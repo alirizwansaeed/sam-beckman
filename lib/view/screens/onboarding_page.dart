@@ -12,25 +12,26 @@ class OnBoardingPage extends StatefulWidget {
 }
 
 class _OnBoardingPageState extends State<OnBoardingPage> {
-  var brightness ;
+  var brightness;
   bool? isDarkMode;
   @override
   void initState() {
-     brightness = SchedulerBinding.instance.window.platformBrightness;
-     isDarkMode = brightness == Brightness.dark;
+    brightness = SchedulerBinding.instance?.window.platformBrightness;
+    isDarkMode = brightness == Brightness.dark;
     // TODO: implement initState
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
-    brightness = SchedulerBinding.instance.window.platformBrightness;
+    brightness = SchedulerBinding.instance?.window.platformBrightness;
     isDarkMode = brightness == Brightness.dark;
     return ScreenUtilInit(
       designSize: const Size(360, 812),
       builder: () => SafeArea(
         child: Scaffold(
           body: IntroductionScreen(
-            globalBackgroundColor: isDarkMode!?Colors.black12:Colors.white,
+            globalBackgroundColor: isDarkMode! ? Colors.black12 : Colors.white,
             pages: [
               _pageViewModel(context,
                   title1: 'Explore. ',
@@ -87,10 +88,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
               style: TextStyle(
                 fontSize: 28.sp,
                 fontWeight: FontWeight.bold,
-                color:
-                    isDarkMode!
-                        ? Colors.white
-                        : Colors.black,
+                color: isDarkMode! ? Colors.white : Colors.black,
               ),
             ),
             TextSpan(

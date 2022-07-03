@@ -43,10 +43,10 @@ class _ShowCategoriesState extends State<ShowCategories>
   }
 
   Future<bool> _onBackPressed() {
-  return Future.delayed(Duration(milliseconds: 1), () {
-    return false;
-  });
-}
+    return Future.delayed(Duration(milliseconds: 1), () {
+      return false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +57,8 @@ class _ShowCategoriesState extends State<ShowCategories>
           onWillPop: _onBackPressed,
           child: Scaffold(
               bottomNavigationBar: SlideTransition(
-                  position: offsetAnimation, child: CustomBottomNavigationBar(1)),
+                  position: offsetAnimation,
+                  child: CustomBottomNavigationBar(1)),
               body: CategoriesBody(
                 category: widget.categoryValue,
               )),
@@ -103,7 +104,7 @@ class CategoriesBody extends StatelessWidget {
                               style: TextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: ScreenUtil().setSp(28),
-                                color: SchedulerBinding.instance.window
+                                color: SchedulerBinding.instance?.window
                                             .platformBrightness ==
                                         Brightness.dark
                                     ? Colors.white
@@ -126,7 +127,7 @@ class CategoriesBody extends StatelessWidget {
                               height: 160.h,
                               child: ListView(
                                   physics: BouncingScrollPhysics(),
-                                  scrollDirection: Axis.horizontal, 
+                                  scrollDirection: Axis.horizontal,
                                   shrinkWrap: true,
                                   children: snapshot.data!.docs.map((document) {
                                     if (snapshot.hasData) {
@@ -134,27 +135,39 @@ class CategoriesBody extends StatelessWidget {
                                           int.parse("0xff${document['color']}");
                                       var favColor = Colors.grey;
 
-                                      if(snapshots.data!.contains(document['title'])){
+                                      if (snapshots.data!
+                                          .contains(document['title'])) {
                                         favColor = Colors.red;
-                                        snapshots.data!.remove(document['title']);
+                                        snapshots.data!
+                                            .remove(document['title']);
                                       }
                                       return GestureDetector(
                                         onTap: () {
                                           Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (_) => AppsDetailsPage(
-                                                    favColor: favColor,
-                                                    color: document['color'],
-                                                    description: document['description'],
-                                                    ratting:
-                                                        document['rating'].toString(),
-                                                    developer: document['developer'],
-                                                    link: document['playStoreLink'],
-                                                    appId: document.id,
-                                                    applicationTitle: document['title'],
-                                                    category: document['category'],
-                                                    iconName: document['icon'],)));
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (_) =>
+                                                      AppsDetailsPage(
+                                                        favColor: favColor,
+                                                        color:
+                                                            document['color'],
+                                                        description: document[
+                                                            'description'],
+                                                        ratting:
+                                                            document['rating']
+                                                                .toString(),
+                                                        developer: document[
+                                                            'developer'],
+                                                        link: document[
+                                                            'playStoreLink'],
+                                                        appId: document.id,
+                                                        applicationTitle:
+                                                            document['title'],
+                                                        category: document[
+                                                            'category'],
+                                                        iconName:
+                                                            document['icon'],
+                                                      )));
                                         },
                                         child: AppContainer(
                                           backgroundColor: Color(backColor),
@@ -178,9 +191,8 @@ class CategoriesBody extends StatelessWidget {
                           } else
                             return Container();
                         }),
-                        SizedBox(height: 30.h),
-
-                        StreamBuilder<QuerySnapshot>(
+                    SizedBox(height: 30.h),
+                    StreamBuilder<QuerySnapshot>(
                         stream: FirebaseFirestore.instance
                             .collection('apps')
                             .where('category', isEqualTo: category)
@@ -197,45 +209,57 @@ class CategoriesBody extends StatelessWidget {
                                           int.parse("0xff${document['color']}");
 
                                       var favColor = Colors.grey;
-                                      
 
-                                      if(fav_list!.contains(document['title'])){
+                                      if (fav_list!
+                                          .contains(document['title'])) {
                                         favColor = Colors.red;
                                         fav_list!.remove(document['title']);
                                       }
-                                      
+
                                       return Padding(
-                                        padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                                        padding: const EdgeInsets.fromLTRB(
+                                            10, 0, 10, 0),
                                         child: GestureDetector(
                                           onTap: () {
                                             Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (_) => AppsDetailsPage(
-                                                    favColor: favColor, 
-                                                    color: document['color'],
-                                                    description: document['description'],
-                                                    ratting:
-                                                        document['rating'].toString(),
-                                                    developer: document['developer'],
-                                                    link: document['playStoreLink'],
-                                                    appId: document.id,
-                                                    applicationTitle: document['title'],
-                                                    category: document['category'],
-                                                    iconName: document['icon'],)));
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (_) =>
+                                                        AppsDetailsPage(
+                                                          favColor: favColor,
+                                                          color:
+                                                              document['color'],
+                                                          description: document[
+                                                              'description'],
+                                                          ratting:
+                                                              document['rating']
+                                                                  .toString(),
+                                                          developer: document[
+                                                              'developer'],
+                                                          link: document[
+                                                              'playStoreLink'],
+                                                          appId: document.id,
+                                                          applicationTitle:
+                                                              document['title'],
+                                                          category: document[
+                                                              'category'],
+                                                          iconName:
+                                                              document['icon'],
+                                                        )));
                                           },
                                           child: AppDisplayBox(
-                                              backgroundColor: Color(backColor),
-                                              color: document['color'],
-                                              applicationTitle: document['title'],
-                                              category: document['category'],
-                                              iconName: document['icon'],
-                                              appId: document.id,
-                                              description: document['description'],
-                                              ratting:
-                                                  document['rating'].toString(),
-                                              developer: document['developer'],
-                                              link: document['playStoreLink'],
+                                            backgroundColor: Color(backColor),
+                                            color: document['color'],
+                                            applicationTitle: document['title'],
+                                            category: document['category'],
+                                            iconName: document['icon'],
+                                            appId: document.id,
+                                            description:
+                                                document['description'],
+                                            ratting:
+                                                document['rating'].toString(),
+                                            developer: document['developer'],
+                                            link: document['playStoreLink'],
                                           ),
                                         ),
                                       );

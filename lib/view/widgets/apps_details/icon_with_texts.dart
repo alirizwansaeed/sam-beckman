@@ -18,15 +18,25 @@ class IconsWithTexts extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        isStar?Icon(Icons.star,size:30.w,color: Theme.of(context).primaryColor,):Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(3),
-              color: Theme.of(context).primaryColor,
-            ),
-            child: Padding(
-          padding: const EdgeInsets.all(1.0),
-          child: Icon(Icons.arrow_downward,color: Colors.white,size:18.w,),
-        )),
+        isStar
+            ? Icon(
+                Icons.star,
+                size: 30.w,
+                color: Theme.of(context).primaryColor,
+              )
+            : Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(3),
+                  color: Theme.of(context).primaryColor,
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(1.0),
+                  child: Icon(
+                    Icons.arrow_downward,
+                    color: Colors.white,
+                    size: 18.w,
+                  ),
+                )),
         SizedBox(width: 12.w),
         Column(
           children: [
@@ -37,14 +47,13 @@ class IconsWithTexts extends StatelessWidget {
               color: const Color.fromARGB(255, 170, 170, 170),
             ),
             CustomText(
-              text: subtitle,
-              size: 12.sp,
-              fontWeight: FontWeight.bold,
-              color:
-              SchedulerBinding.instance.window.platformBrightness == Brightness.dark
-                  ? Colors.white
-                  : Colors.black
-            ),
+                text: subtitle,
+                size: 12.sp,
+                fontWeight: FontWeight.bold,
+                color: SchedulerBinding.instance?.window.platformBrightness ==
+                        Brightness.dark
+                    ? Colors.white
+                    : Colors.black),
           ],
         ),
       ],

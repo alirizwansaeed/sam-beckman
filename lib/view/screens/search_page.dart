@@ -27,7 +27,9 @@ class _SearchPageState extends State<SearchPage> {
         designSize: const Size(360, 800),
         builder: () => Scaffold(
           bottomNavigationBar: CustomBottomNavigationBar(2),
-          body: SearchPageBody(filterValue: widget.filterValue,),
+          body: SearchPageBody(
+            filterValue: widget.filterValue,
+          ),
         ),
       ),
     );
@@ -71,7 +73,8 @@ class _SearchPageBodyState extends State<SearchPageBody> {
               text: 'Find Your Favourite',
               fontWeight: FontWeight.w700,
               size: ScreenUtil().setSp(28),
-              color:SchedulerBinding.instance.window.platformBrightness == Brightness.dark
+              color: SchedulerBinding.instance?.window.platformBrightness ==
+                      Brightness.dark
                   ? Colors.white
                   : Colors.black,
             ),
@@ -88,7 +91,9 @@ class _SearchPageBodyState extends State<SearchPageBody> {
                   // outlined border for search bar
                   decoration: BoxDecoration(
                     border: Border.all(
-                      color:SchedulerBinding.instance.window.platformBrightness == Brightness.dark
+                      color: SchedulerBinding
+                                  .instance?.window.platformBrightness ==
+                              Brightness.dark
                           ? Colors.white
                           : Colors.black,
                       width: 1.h,
@@ -129,19 +134,27 @@ class _SearchPageBodyState extends State<SearchPageBody> {
                 SizedBox(width: 10.w),
                 Container(
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Theme.of(context).primaryColor,
-                    boxShadow: [
-                      BoxShadow(color: Theme.of(context).primaryColor.withOpacity(0.5),spreadRadius: 1,blurRadius: 5)]
-                  ),
+                      borderRadius: BorderRadius.circular(10),
+                      color: Theme.of(context).primaryColor,
+                      boxShadow: [
+                        BoxShadow(
+                            color:
+                                Theme.of(context).primaryColor.withOpacity(0.5),
+                            spreadRadius: 1,
+                            blurRadius: 5)
+                      ]),
                   padding: EdgeInsets.symmetric(horizontal: 10.w),
                   height: 42.h,
                   child: DropdownButtonHideUnderline(
                     child: DropdownButton<String>(
                       value: '${widget.filterValue}',
-                      icon:  Icon(Icons.keyboard_arrow_down,color: MediaQuery.of(context).platformBrightness == Brightness.dark
-                          ? Colors.white
-                          : Colors.black,),
+                      icon: Icon(
+                        Icons.keyboard_arrow_down,
+                        color: MediaQuery.of(context).platformBrightness ==
+                                Brightness.dark
+                            ? Colors.white
+                            : Colors.black,
+                      ),
                       iconSize: 24.h,
                       style: const TextStyle(color: Colors.black),
                       underline: null,
@@ -186,11 +199,17 @@ class _SearchPageBodyState extends State<SearchPageBody> {
                       ].map<DropdownMenuItem<String>>((String value) {
                         return DropdownMenuItem<String>(
                           value: value,
-                          child: Text(value,style: TextStyle(
-                            fontFamily: 'Satoshi',
-                            color:  SchedulerBinding.instance.window.platformBrightness == Brightness.dark
-                              ? Colors.white
-                              : Colors.black,),),
+                          child: Text(
+                            value,
+                            style: TextStyle(
+                              fontFamily: 'Satoshi',
+                              color: SchedulerBinding.instance?.window
+                                          .platformBrightness ==
+                                      Brightness.dark
+                                  ? Colors.white
+                                  : Colors.black,
+                            ),
+                          ),
                         );
                       }).toList(),
                     ),
@@ -203,16 +222,16 @@ class _SearchPageBodyState extends State<SearchPageBody> {
               text: 'Suggested',
               size: 20.sp,
               fontWeight: FontWeight.w700,
-              color:
-              SchedulerBinding.instance.window.platformBrightness == Brightness.dark
-                      ? Colors.white
-                      : Colors.black,
+              color: SchedulerBinding.instance?.window.platformBrightness ==
+                      Brightness.dark
+                  ? Colors.white
+                  : Colors.black,
             ),
             SizedBox(height: 18.h),
-            controller.older.value==false ||
-                    controller.latest.value==false ||
-                    controller.popular.value==false ||
-                    controller.searchitem.value==false
+            controller.older.value == false ||
+                    controller.latest.value == false ||
+                    controller.popular.value == false ||
+                    controller.searchitem.value == false
                 ? Container(
                     height: MediaQuery.of(context).size.height * 0.8,
                     child: Obx(() => (ListView.builder(
@@ -229,8 +248,9 @@ class _SearchPageBodyState extends State<SearchPageBody> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (_) => AppsDetailsPage(
-                                              color: controller.searchList
-                                                  .elementAt(index).color,
+                                                color: controller.searchList
+                                                    .elementAt(index)
+                                                    .color,
                                                 searchpage: true,
                                                 link: controller.searchList
                                                     .elementAt(index)
@@ -262,7 +282,8 @@ class _SearchPageBodyState extends State<SearchPageBody> {
                                 },
                                 child: AppDisplayBox(
                                   color: controller.searchList
-                                      .elementAt(index).color,
+                                      .elementAt(index)
+                                      .color,
                                   applicationTitle: controller.searchList
                                       .elementAt(index)
                                       .applicationTitle,
@@ -300,8 +321,9 @@ class _SearchPageBodyState extends State<SearchPageBody> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (_) => AppsDetailsPage(
-                                              color: controller.appList
-                                                  .elementAt(index).color,
+                                                color: controller.appList
+                                                    .elementAt(index)
+                                                    .color,
                                                 searchpage: true,
                                                 link: controller.appList
                                                     .elementAt(index)
@@ -331,8 +353,8 @@ class _SearchPageBodyState extends State<SearchPageBody> {
                                   });
                                 },
                                 child: AppDisplayBox(
-                                  color: controller.appList
-                                      .elementAt(index).color,
+                                  color:
+                                      controller.appList.elementAt(index).color,
                                   applicationTitle: controller.appList
                                       .elementAt(index)
                                       .applicationTitle,
@@ -376,8 +398,9 @@ class _SearchPageBodyState extends State<SearchPageBody> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (_) => AppsDetailsPage(
-                                          color: controller.appList
-                                              .elementAt(index).color,
+                                            color: controller.appList
+                                                .elementAt(index)
+                                                .color,
                                             searchpage: true,
                                             link: controller.appList
                                                 .elementAt(index)
@@ -406,8 +429,7 @@ class _SearchPageBodyState extends State<SearchPageBody> {
                               });
                             },
                             child: AppDisplayBox(
-                              color: controller.appList
-                                  .elementAt(index).color,
+                              color: controller.appList.elementAt(index).color,
                               applicationTitle: controller.appList
                                   .elementAt(index)
                                   .applicationTitle,
@@ -447,8 +469,9 @@ class _SearchPageBodyState extends State<SearchPageBody> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (_) => AppsDetailsPage(
-                                          color: controller.appList
-                                              .elementAt(index).color,
+                                            color: controller.appList
+                                                .elementAt(index)
+                                                .color,
                                             searchpage: true,
                                             link: controller.appList
                                                 .elementAt(index)
@@ -477,8 +500,7 @@ class _SearchPageBodyState extends State<SearchPageBody> {
                               });
                             },
                             child: AppDisplayBox(
-                              color: controller.appList
-                                  .elementAt(index).color,
+                              color: controller.appList.elementAt(index).color,
                               applicationTitle: controller.appList
                                   .elementAt(index)
                                   .applicationTitle,
@@ -518,8 +540,9 @@ class _SearchPageBodyState extends State<SearchPageBody> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (_) => AppsDetailsPage(
-                                            color:controller.appList
-                                                .elementAt(index).color,
+                                            color: controller.appList
+                                                .elementAt(index)
+                                                .color,
                                             searchpage: true,
                                             link: controller.appList
                                                 .elementAt(index)
@@ -548,8 +571,7 @@ class _SearchPageBodyState extends State<SearchPageBody> {
                               });
                             },
                             child: AppDisplayBox(
-                              color: controller.appList
-                                  .elementAt(index).color,
+                              color: controller.appList.elementAt(index).color,
                               applicationTitle: controller.appList
                                   .elementAt(index)
                                   .applicationTitle,
@@ -584,20 +606,19 @@ class _SearchPageBodyState extends State<SearchPageBody> {
 }
 
 class App {
-  App({
-    this.reviews,
-    this.applicationTitle,
-    this.category,
-    this.iconName,
-    this.appId,
-    this.description,
-    this.ratting,
-    this.developer,
-    this.link,
-    this.publish,
-    this.imagePath,
-    this.color
-  });
+  App(
+      {this.reviews,
+      this.applicationTitle,
+      this.category,
+      this.iconName,
+      this.appId,
+      this.description,
+      this.ratting,
+      this.developer,
+      this.link,
+      this.publish,
+      this.imagePath,
+      this.color});
   String? color;
   String? imagePath;
   String? publish;

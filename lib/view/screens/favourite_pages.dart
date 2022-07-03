@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -25,12 +27,12 @@ class _FavouritesPageState extends State<FavouritesPage> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: ScreenUtilInit(
-          designSize: const Size(360, 812),
-          builder: () => Scaffold(
-            bottomNavigationBar: CustomBottomNavigationBar(1),
-            body: FavouritesPageBody(),
-          ),
-        ));
+      designSize: const Size(360, 812),
+      builder: () => Scaffold(
+        bottomNavigationBar: CustomBottomNavigationBar(1),
+        body: FavouritesPageBody(),
+      ),
+    ));
   }
 }
 
@@ -42,8 +44,6 @@ class FavouritesPageBody extends StatefulWidget {
 }
 
 class _FavouritesPageBodyState extends State<FavouritesPageBody> {
-
-
   @override
   void initState() {
     controller.Fav_appList.clear();
@@ -54,8 +54,7 @@ class _FavouritesPageBodyState extends State<FavouritesPageBody> {
 
   var currentUser = FirebaseAuth.instance.currentUser;
 
-  favouriteController controller=Get.put(favouriteController());
-
+  favouriteController controller = Get.put(favouriteController());
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +77,9 @@ class _FavouritesPageBodyState extends State<FavouritesPageBody> {
                         fontFamily: 'Satoshi',
                         fontWeight: FontWeight.w600,
                         fontSize: ScreenUtil().setSp(28),
-                        color:SchedulerBinding.instance.window.platformBrightness == Brightness.dark
+                        color: SchedulerBinding
+                                    .instance?.window.platformBrightness ==
+                                Brightness.dark
                             ? Colors.white
                             : Colors.black,
                       ),
@@ -97,7 +98,9 @@ class _FavouritesPageBodyState extends State<FavouritesPageBody> {
                         fontFamily: 'Satoshi',
                         fontWeight: FontWeight.w600,
                         fontSize: ScreenUtil().setSp(28),
-                        color: SchedulerBinding.instance.window.platformBrightness == Brightness.dark
+                        color: SchedulerBinding
+                                    .instance?.window.platformBrightness ==
+                                Brightness.dark
                             ? Colors.white
                             : Colors.black,
                       ),
@@ -108,65 +111,58 @@ class _FavouritesPageBodyState extends State<FavouritesPageBody> {
             ),
             SizedBox(height: 40.h),
 
-
-              // ListView(scrollDirection: Axis.horizontal, children: const [
-              //   AppContainer(),
-              //   AppContainer(),
-              // ]),
-              SizedBox(
+            // ListView(scrollDirection: Axis.horizontal, children: const [
+            //   AppContainer(),
+            //   AppContainer(),
+            // ]),
+            SizedBox(
               height: 170.h,
-              child:
-              FutureBuilder<dynamic>(
+              child: FutureBuilder<dynamic>(
                   future: controller.GetUpperapps(),
                   builder: (context, snapshot) {
-                    if(snapshot.hasData) {
+                    if (snapshot.hasData) {
                       return ListView.builder(
                         scrollDirection: Axis.horizontal,
                         itemBuilder: ((context, index) {
                           return AppContainer(
-                            color: controller.Fav_appList1
-                                .elementAt(index).color,
-                            applicationTitle: controller.Fav_appList1
-                                .elementAt(index)
-                                .applicationTitle,
-                            category: controller.Fav_appList1
-                                .elementAt(index)
+                            color:
+                                controller.Fav_appList1.elementAt(index).color,
+                            applicationTitle:
+                                controller.Fav_appList1.elementAt(index)
+                                    .applicationTitle,
+                            category: controller.Fav_appList1.elementAt(index)
                                 .category,
-                            backgroundColor:Color(int.parse('0xff${ controller.Fav_appList1
-                                .elementAt(index).color}')),
-                            iconName: controller.Fav_appList1
-                                .elementAt(index)
+                            backgroundColor: Color(int.parse(
+                                '0xff${controller.Fav_appList1.elementAt(index).color}')),
+                            iconName: controller.Fav_appList1.elementAt(index)
                                 .iconName,
-                            appId: controller.Fav_appList1
-                                .elementAt(index)
-                                .appId,
-                            description: controller.Fav_appList1
-                                .elementAt(index)
-                                .description,
-                            ratting: controller.Fav_appList1
-                                .elementAt(index)
+                            appId:
+                                controller.Fav_appList1.elementAt(index).appId,
+                            description:
+                                controller.Fav_appList1.elementAt(index)
+                                    .description,
+                            ratting: controller.Fav_appList1.elementAt(index)
                                 .ratting
                                 .toString(),
-                            developer: controller.Fav_appList1
-                                .elementAt(index)
+                            developer: controller.Fav_appList1.elementAt(index)
                                 .developer
                                 .toString(),
-                            link: controller.Fav_appList1
-                                .elementAt(index)
+                            link: controller.Fav_appList1.elementAt(index)
                                 .link
                                 .toString(),
-                          );}),
+                          );
+                        }),
                         itemCount: controller.Fav_appList1.length,
                         shrinkWrap: true,
                       );
                     } else {
-                      return Container(child: Center(child: CircularProgressIndicator()),);
+                      return Container(
+                        child: Center(child: CircularProgressIndicator()),
+                      );
                     }
-
-                  }
-              ),
+                  }),
             ),
-            
+
             SizedBox(height: 35.h),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -186,67 +182,66 @@ class _FavouritesPageBodyState extends State<FavouritesPageBody> {
                     text: 'All Favourites Applications',
                     size: ScreenUtil().setSp(20),
                     fontWeight: FontWeight.w700,
-                    color:SchedulerBinding.instance.window.platformBrightness == Brightness.dark
-                        ? Colors.white
-                        : Colors.black,
+                    color:
+                        SchedulerBinding.instance?.window.platformBrightness ==
+                                Brightness.dark
+                            ? Colors.white
+                            : Colors.black,
                   ),
                 ],
               ),
             ),
-            SizedBox(height: 30.h,),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                child: FutureBuilder<dynamic>(
+            SizedBox(
+              height: 30.h,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: FutureBuilder<dynamic>(
                   future: controller.Getapps(),
                   builder: (context, snapshot) {
-                    if(snapshot.hasData) {
+                    if (snapshot.hasData) {
                       return ListView.builder(
-                          itemBuilder: ((context, index) {
+                        itemBuilder: ((context, index) {
                           return AppDisplayBox(
-                            color: controller.Fav_appList
-                                .elementAt(index).color,
-                            imagePath: controller.Fav_appList.elementAt(index).imagePath,
-                            applicationTitle: controller.Fav_appList
-                                .elementAt(index)
-                                .applicationTitle,
-                            category: controller.Fav_appList
-                                .elementAt(index)
+                            color:
+                                controller.Fav_appList.elementAt(index).color,
+                            imagePath: controller.Fav_appList.elementAt(index)
+                                .imagePath,
+                            applicationTitle:
+                                controller.Fav_appList.elementAt(index)
+                                    .applicationTitle,
+                            category: controller.Fav_appList.elementAt(index)
                                 .category,
-                            backgroundColor:Color(int.parse('0xff${ controller.Fav_appList
-                                .elementAt(index).color}')),
-                            iconName: controller.Fav_appList
-                                .elementAt(index)
+                            backgroundColor: Color(int.parse(
+                                '0xff${controller.Fav_appList.elementAt(index).color}')),
+                            iconName: controller.Fav_appList.elementAt(index)
                                 .iconName,
-                            appId: controller.Fav_appList
-                                .elementAt(index)
-                                .appId,
-                            description: controller.Fav_appList
-                                .elementAt(index)
+                            appId:
+                                controller.Fav_appList.elementAt(index).appId,
+                            description: controller.Fav_appList.elementAt(index)
                                 .description,
-                            ratting: controller.Fav_appList
-                                .elementAt(index)
+                            ratting: controller.Fav_appList.elementAt(index)
                                 .ratting
                                 .toString(),
-                            developer: controller.Fav_appList
-                                .elementAt(index)
+                            developer: controller.Fav_appList.elementAt(index)
                                 .developer
                                 .toString(),
-                            link: controller.Fav_appList
-                                .elementAt(index)
+                            link: controller.Fav_appList.elementAt(index)
                                 .link
                                 .toString(),
-                          );}),
+                          );
+                        }),
                         itemCount: controller.Fav_appList.length,
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
                       );
                     } else {
-                      return Container(child: Center(child: CircularProgressIndicator()),);
+                      return Container(
+                        child: Center(child: CircularProgressIndicator()),
+                      );
                     }
-
-                  }
+                  }),
             ),
-              ),
             // FutureBuilder<dynamic>(
             //   future: FirebaseFirestore.instance.collection('apps').get(),
             //   builder: (context, snapshot) {
@@ -279,26 +274,24 @@ class _FavouritesPageBodyState extends State<FavouritesPageBody> {
       ),
     );
   }
-
-
 }
 
 class AppContainer extends StatelessWidget {
-  const AppContainer({
-    this.appId,
-    this.applicationTitle,
-    this.category,
-    this.iconName,
-    this.backgroundColor,
-    this.description,
-    this.ratting,
-    this.developer,
-    this.link,
-    this.color,
-    this.reviews,
-    this.favColor });
+  const AppContainer(
+      {this.appId,
+      this.applicationTitle,
+      this.category,
+      this.iconName,
+      this.backgroundColor,
+      this.description,
+      this.ratting,
+      this.developer,
+      this.link,
+      this.color,
+      this.reviews,
+      this.favColor});
 
-  final String?color;
+  final String? color;
   final String? link;
   final String? developer;
   final String? appId;
@@ -318,7 +311,7 @@ class AppContainer extends StatelessWidget {
             context,
             MaterialPageRoute(
                 builder: (_) => AppsDetailsPage(
-                  color: color,
+                    color: color,
                     link: link,
                     developer: this.developer,
                     description: description,
@@ -334,8 +327,13 @@ class AppContainer extends StatelessWidget {
         margin: EdgeInsets.only(left: 20.w),
         padding: EdgeInsets.all(20.h),
         decoration: BoxDecoration(
-          boxShadow: [BoxShadow(color: Colors.black12,spreadRadius: 1,blurRadius: 1)],
-          color: SchedulerBinding.instance.window.platformBrightness == Brightness.dark?Colors.grey.shade800:backgroundColor,
+          boxShadow: [
+            BoxShadow(color: Colors.black12, spreadRadius: 1, blurRadius: 1)
+          ],
+          color: SchedulerBinding.instance?.window.platformBrightness ==
+                  Brightness.dark
+              ? Colors.grey.shade800
+              : backgroundColor,
           borderRadius: BorderRadius.circular(15.0.r),
         ),
         child: Column(
@@ -355,7 +353,11 @@ class AppContainer extends StatelessWidget {
                       CustomText(
                           text: applicationTitle ?? '',
                           size: 18.sp,
-                          color: SchedulerBinding.instance.window.platformBrightness == Brightness.dark?Colors.white:Colors.black,
+                          color: SchedulerBinding
+                                      .instance?.window.platformBrightness ==
+                                  Brightness.dark
+                              ? Colors.white
+                              : Colors.black,
                           fontWeight: FontWeight.bold),
                     ],
                   ),
@@ -374,10 +376,11 @@ class AppContainer extends StatelessWidget {
                   highlightColor: Colors.red,
                   onTap: () {
                     favouriteController controller =
-                    Get.put(favouriteController());
-                    if(FirebaseAuth.instance.currentUser!.email!='guest@gmail.com')
+                        Get.put(favouriteController());
+                    if (FirebaseAuth.instance.currentUser!.email !=
+                        'guest@gmail.com')
                       controller.addFav({
-                        'color':color,
+                        'color': color,
                         'link': link,
                         "developer": developer,
                         'description': description,
@@ -387,7 +390,9 @@ class AppContainer extends StatelessWidget {
                         'iconName': iconName,
                         'ratting': ratting
                       }, context);
-                    Future.delayed(Duration(seconds: 1)).then((value) => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>FavouritesPage())));
+                    Future.delayed(Duration(seconds: 1)).then((value) =>
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(
+                            builder: (context) => FavouritesPage())));
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(5.0),

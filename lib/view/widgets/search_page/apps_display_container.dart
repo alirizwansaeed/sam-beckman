@@ -5,20 +5,32 @@ import 'package:sam_beckman/view/screens/apps_details_page.dart';
 import 'package:sam_beckman/view/widgets/custom_text.dart';
 
 class AppDisplayBox extends StatelessWidget {
-  const AppDisplayBox({
-    Key? key,
-    this.applicationTitle,
-    this.imagePath,
-    this.category,
-    this.appId,
-  this.ratting,this.developer,this.description,this.iconName,this.link,this.backgroundColor, this.color
-  }) : super(key: key);
+  const AppDisplayBox(
+      {Key? key,
+      this.applicationTitle,
+      this.imagePath,
+      this.category,
+      this.appId,
+      this.ratting,
+      this.developer,
+      this.description,
+      this.iconName,
+      this.link,
+      this.backgroundColor,
+      this.color})
+      : super(key: key);
 
-  final String? applicationTitle, iconName,appId,description,ratting,developer,link;
+  final String? applicationTitle,
+      iconName,
+      appId,
+      description,
+      ratting,
+      developer,
+      link;
   final String? category;
   final String? imagePath;
-  final Color ?backgroundColor;
-  final String?  color;
+  final Color? backgroundColor;
+  final String? color;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -27,7 +39,7 @@ class AppDisplayBox extends StatelessWidget {
             context,
             MaterialPageRoute(
                 builder: (_) => AppsDetailsPage(
-                  color: color,
+                    color: color,
                     link: link,
                     developer: this.developer,
                     description: description,
@@ -48,21 +60,42 @@ class AppDisplayBox extends StatelessWidget {
               spreadRadius: 2.h,
             ),
           ],
-          color: SchedulerBinding.instance.window.platformBrightness == Brightness.dark?Colors.grey.shade800:Colors.white,
+          color: SchedulerBinding.instance?.window.platformBrightness ==
+                  Brightness.dark
+              ? Colors.grey.shade800
+              : Colors.white,
           borderRadius: BorderRadius.circular(15.r),
         ),
         child: ListTile(
           leading: Container(
             height: 40,
-              width: 40,
-              decoration: BoxDecoration(shape:BoxShape.circle,image: DecorationImage(image: NetworkImage(iconName.toString()))),),
+            width: 40,
+            decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                image:
+                    DecorationImage(image: NetworkImage(iconName.toString()))),
+          ),
           title: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CustomText(
-                text: applicationTitle, size: 14.sp, fontWeight: FontWeight.w700,color: SchedulerBinding.instance.window.platformBrightness == Brightness.dark?Colors.white:Colors.black,),
+                text: applicationTitle,
+                size: 14.sp,
+                fontWeight: FontWeight.w700,
+                color: SchedulerBinding.instance?.window.platformBrightness ==
+                        Brightness.dark
+                    ? Colors.white
+                    : Colors.black,
+              ),
               CustomText(
-                  text: category, size: 12.sp, fontWeight: FontWeight.w400,color: SchedulerBinding.instance.window.platformBrightness == Brightness.dark?Colors.white:Colors.black,),
+                text: category,
+                size: 12.sp,
+                fontWeight: FontWeight.w400,
+                color: SchedulerBinding.instance?.window.platformBrightness ==
+                        Brightness.dark
+                    ? Colors.white
+                    : Colors.black,
+              ),
             ],
           ),
         ),

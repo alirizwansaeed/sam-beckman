@@ -25,7 +25,10 @@ class CategoriesBox extends StatelessWidget {
             spreadRadius: 2.h,
           ),
         ],
-        color: SchedulerBinding.instance.window.platformBrightness != Brightness.dark?Colors.white:Colors.grey.shade700,
+        color: SchedulerBinding.instance?.window.platformBrightness !=
+                Brightness.dark
+            ? Colors.white
+            : Colors.grey.shade700,
         borderRadius: BorderRadius.circular(15.r),
       ),
       child: Column(
@@ -37,7 +40,14 @@ class CategoriesBox extends StatelessWidget {
           ),
           SizedBox(height: 6.h),
           CustomText(
-              text: title ?? '', size: 14.sp, fontWeight: FontWeight.w600,color: SchedulerBinding.instance.window.platformBrightness == Brightness.dark?Colors.white:Colors.black,),
+            text: title ?? '',
+            size: 14.sp,
+            fontWeight: FontWeight.w600,
+            color: SchedulerBinding.instance?.window.platformBrightness ==
+                    Brightness.dark
+                ? Colors.white
+                : Colors.black,
+          ),
         ],
       ),
     );

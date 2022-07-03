@@ -25,13 +25,13 @@ class _reviewdAppPageState extends State<reviewdAppPage> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: ScreenUtilInit(
-          designSize: const Size(360, 812),
-          builder: () => SafeArea(
-            child: Scaffold(
-              body: ReviewdAppPageBody(),
-            ),
-          ),
-        ));
+      designSize: const Size(360, 812),
+      builder: () => SafeArea(
+        child: Scaffold(
+          body: ReviewdAppPageBody(),
+        ),
+      ),
+    ));
   }
 }
 
@@ -43,8 +43,6 @@ class ReviewdAppPageBody extends StatefulWidget {
 }
 
 class _ReviewdAppPageBodyState extends State<ReviewdAppPageBody> {
-
-
   @override
   void initState() {
     controller.reviewd_appList.clear();
@@ -54,8 +52,7 @@ class _ReviewdAppPageBodyState extends State<ReviewdAppPageBody> {
 
   var currentUser = FirebaseAuth.instance.currentUser;
 
-  favouriteController controller=Get.put(favouriteController());
-
+  favouriteController controller = Get.put(favouriteController());
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +75,9 @@ class _ReviewdAppPageBodyState extends State<ReviewdAppPageBody> {
                         fontFamily: 'Satoshi',
                         fontWeight: FontWeight.w600,
                         fontSize: ScreenUtil().setSp(28),
-                        color:SchedulerBinding.instance.window.platformBrightness == Brightness.dark
+                        color: SchedulerBinding
+                                    .instance?.window.platformBrightness ==
+                                Brightness.dark
                             ? Colors.white
                             : Colors.black,
                       ),
@@ -86,8 +85,8 @@ class _ReviewdAppPageBodyState extends State<ReviewdAppPageBody> {
                     TextSpan(
                       text: 'Ratings ',
                       style: TextStyle(
-                        fontFamily: 'Satoshi',
-                        fontWeight: FontWeight.w600,
+                          fontFamily: 'Satoshi',
+                          fontWeight: FontWeight.w600,
                           fontSize: ScreenUtil().setSp(28),
                           color: Theme.of(context).primaryColor),
                     ),
@@ -95,19 +94,22 @@ class _ReviewdAppPageBodyState extends State<ReviewdAppPageBody> {
                 ),
               ),
             ),
-            SizedBox(height: 40.h), 
+            SizedBox(height: 40.h),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
               child: FutureBuilder<dynamic>(
                   future: controller.GetRattedapps(),
                   builder: (context, snapshot) {
-                    if(snapshot.hasData) {
+                    if (snapshot.hasData) {
                       return ListView.builder(
                         itemBuilder: ((context, index) {
                           return AppDisplayBox(
                             color: controller.reviewd_appList
-                                .elementAt(index).color,
-                            imagePath: controller.reviewd_appList.elementAt(index).imagePath,
+                                .elementAt(index)
+                                .color,
+                            imagePath: controller.reviewd_appList
+                                .elementAt(index)
+                                .imagePath,
                             applicationTitle: controller.reviewd_appList
                                 .elementAt(index)
                                 .applicationTitle,
@@ -135,17 +137,18 @@ class _ReviewdAppPageBodyState extends State<ReviewdAppPageBody> {
                                 .elementAt(index)
                                 .link
                                 .toString(),
-                          );}),
+                          );
+                        }),
                         itemCount: controller.reviewd_appList.length,
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
                       );
                     } else {
-                      return Container(child: Center(child: CircularProgressIndicator()),);
+                      return Container(
+                        child: Center(child: CircularProgressIndicator()),
+                      );
                     }
-
-                  }
-              ),
+                  }),
             ),
             // FutureBuilder<dynamic>(
             //   future: FirebaseFirestore.instance.collection('apps').get(),
@@ -179,25 +182,35 @@ class _ReviewdAppPageBodyState extends State<ReviewdAppPageBody> {
       ),
     );
   }
-
-
 }
 
 class AppContainer extends StatelessWidget {
-  const AppContainer({
-    Key? key,
-    this.applicationTitle,
-    this.imagePath,
-    this.category,
-    this.appId,
-    this.ratting,this.developer,this.description,this.iconName,this.link,this.backgroundColor, this.favColor,
-    required this.color
-  }) : super(key: key);
+  const AppContainer(
+      {Key? key,
+      this.applicationTitle,
+      this.imagePath,
+      this.category,
+      this.appId,
+      this.ratting,
+      this.developer,
+      this.description,
+      this.iconName,
+      this.link,
+      this.backgroundColor,
+      this.favColor,
+      required this.color})
+      : super(key: key);
 
-  final String? applicationTitle, iconName,appId,description,ratting,developer,link;
+  final String? applicationTitle,
+      iconName,
+      appId,
+      description,
+      ratting,
+      developer,
+      link;
   final String? category;
   final String? imagePath;
-  final Color ?backgroundColor;
+  final Color? backgroundColor;
   final String? color;
   final Color? favColor;
   @override
@@ -269,8 +282,9 @@ class AppContainer extends StatelessWidget {
                   highlightColor: Colors.red,
                   onTap: () {
                     favouriteController controller =
-                    Get.put(favouriteController());
-                    if(FirebaseAuth.instance.currentUser!.email!='guest@gmail.com')
+                        Get.put(favouriteController());
+                    if (FirebaseAuth.instance.currentUser!.email !=
+                        'guest@gmail.com')
                       controller.addFav({
                         'link': link,
                         "developer": developer,

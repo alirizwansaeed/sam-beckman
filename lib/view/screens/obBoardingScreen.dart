@@ -1,3 +1,4 @@
+import 'package:delayed_display/delayed_display.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -16,11 +17,11 @@ class onBoarding extends StatefulWidget {
 }
 
 class _onBoardingState extends State<onBoarding> {
-  int?index;
-  PageController controller=new PageController();
+  int? index;
+  PageController controller = new PageController();
 
-  initializeState() async{
-    var pref=await SharedPreferences.getInstance();
+  initializeState() async {
+    var pref = await SharedPreferences.getInstance();
     pref.setString('onBoard', "Hello");
   }
 
@@ -30,93 +31,97 @@ class _onBoardingState extends State<onBoarding> {
     initializeState();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: Size(360, 812),
-      builder: () => SafeArea(child:Scaffold(
-      body:Container(
-        color: SchedulerBinding.instance.window.platformBrightness == Brightness.dark ? 
-                  Color(0xff303030):
-                  Colors.white,
-        child: Column(
-          children: [
-            Container(
-              color: SchedulerBinding.instance.window.platformBrightness == Brightness.dark ? 
-              Color(0xff303030):
-              Colors.white
-              ,
-              height:MediaQuery.of(context).size.height*0.80,
-              child: PageView(
-
-                onPageChanged: (indexes){
-                  print(indexes);
-                  setState(() {
-                    index=indexes;
-                  });
-                },
-                controller: controller,
+        designSize: Size(360, 812),
+        builder: () => SafeArea(
+                child: Scaffold(
+                    body: Container(
+              color: SchedulerBinding.instance?.window.platformBrightness ==
+                      Brightness.dark
+                  ? Color(0xff303030)
+                  : Colors.white,
+              child: Column(
                 children: [
-                  firstPage(),
-                  seccondPage(),
-                  thirdPage()
-                ],
-              ),
-            ),
-
-            SizedBox(height: 20.h,),
-
-           
-        //   Padding(
-        //     padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 20),
-        //     child: Row(
-        //       mainAxisAlignment: MainAxisAlignment.center,
-        //       children: [
-        //         SmoothPageIndicator(
-        //             controller: controller,  // PageController
-        //             count:3,
-        //             // forcing the indicator to use a specific direction
-        //             textDirection: TextDirection.ltr,
-        //             effect:  SwapEffect(type:SwapType.yRotation,dotColor: Colors.grey,activeDotColor:Theme.of(context).primaryColor,dotHeight:15,dotWidth:15),
-        // ),
-
-        //       ],
-        //     ),
-        //   ),
-            InkWell(
-              onTap: ()=>Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (_) => const Login()),
-              ),
-              child: Container(
-                  height:60,
-                  width: MediaQuery.of(context).size.width*0.8,
-                  decoration: BoxDecoration(
-                    
-                    border: Border.all(color:Color(0xfffec12b),width: 2),
-                      borderRadius: BorderRadius.circular(15),
-                      color: Theme.of(context).primaryColor,
+                  Container(
+                    color:
+                        SchedulerBinding.instance?.window.platformBrightness ==
+                                Brightness.dark
+                            ? Color(0xff303030)
+                            : Colors.white,
+                    height: MediaQuery.of(context).size.height * 0.80,
+                    child: PageView(
+                      onPageChanged: (indexes) {
+                        print(indexes);
+                        setState(() {
+                          index = indexes;
+                        });
+                      },
+                      controller: controller,
+                      children: [firstPage(), seccondPage(), thirdPage()],
+                    ),
                   ),
-                  child: Center(
-                    child: Text('Start now!',
-                      style: TextStyle(
-                        fontSize: 16.sp,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'Satoshi'
-                      ),
+
+                  SizedBox(
+                    height: 20.h,
+                  ),
+
+                  //   Padding(
+                  //     padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 20),
+                  //     child: Row(
+                  //       mainAxisAlignment: MainAxisAlignment.center,
+                  //       children: [
+                  //         SmoothPageIndicator(
+                  //             controller: controller,  // PageController
+                  //             count:3,
+                  //             // forcing the indicator to use a specific direction
+                  //             textDirection: TextDirection.ltr,
+                  //             effect:  SwapEffect(type:SwapType.yRotation,dotColor: Colors.grey,activeDotColor:Theme.of(context).primaryColor,dotHeight:15,dotWidth:15),
+                  // ),
+
+                  //       ],
+                  //     ),
+                  //   ),
+                  InkWell(
+                    onTap: () => Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (_) => const Login()),
+                    ),
+                    child: DelayedDisplay(
+                      delay: Duration(milliseconds: 300),
+                      slidingBeginOffset: Offset(0, -1),
+                      slidingCurve: Curves.bounceOut,
+                      child: Container(
+                          height: 45,
+                          width: MediaQuery.of(context).size.width * 0.8,
+                          decoration: BoxDecoration(
+                            border:
+                                Border.all(color: Color(0xfffec12b), width: 2),
+                            borderRadius: BorderRadius.circular(6),
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          child: Center(
+                            child: Text(
+                              'Start now!',
+                              style: TextStyle(
+                                  fontSize: 16.sp,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: 'Satoshi'),
+                            ),
+                          )),
                     ),
                   )
+                ],
               ),
-            )
-        ],
-        ),
-      )
-    )));
+            ))));
   }
 }
+
 class firstPage extends StatefulWidget {
-  const firstPage({Key,key}) : super(key: key);
+  const firstPage({Key, key}) : super(key: key);
 
   @override
   _firstPageState createState() => _firstPageState();
@@ -129,96 +134,102 @@ class _firstPageState extends State<firstPage> {
       child: Column(
         children: [
           ClipPath(
-            clipper:CurveImage(),
+            clipper: CurveImage(),
             child: Container(
-              width: double.infinity,
-              height: 340.h,
-              decoration: BoxDecoration(
-                color: SchedulerBinding.instance.window.platformBrightness == Brightness.dark ? 
-                  Color(0xff303030):
-                  Color(0xfff7f7f7),
-                image: DecorationImage(image:  SchedulerBinding.instance.window.platformBrightness == Brightness.dark ?  
-                AssetImage('assets/gifs/gif1_dark.gif') :
-                AssetImage('assets/gifs/gif1_light.gif')),
-              )
-              ),
-            ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              margin: EdgeInsets.only(top: 40.h),
-              child: RichText(
-                text: TextSpan(children: [
-                  TextSpan(
-                    text:'Explore. ',
-                    style: TextStyle(
-                      fontSize: 28.sp,
-                      fontWeight: FontWeight.bold,
-                      color:MediaQuery.of(context).platformBrightness ==
+                width: double.infinity,
+                height: 340.h,
+                decoration: BoxDecoration(
+                  color: SchedulerBinding.instance?.window.platformBrightness ==
                           Brightness.dark
-                          ? Colors.white
-                          : Colors.black,
+                      ? Color(0xff303030)
+                      : Color(0xfff7f7f7),
+                  image: DecorationImage(
+                      image: SchedulerBinding
+                                  .instance?.window.platformBrightness ==
+                              Brightness.dark
+                          ? AssetImage('assets/gifs/gif1_dark.gif')
+                          : AssetImage('assets/gifs/gif1_light.gif')),
+                )),
+          ),
+          DelayedDisplay(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                margin: EdgeInsets.only(top: 40.h),
+                child: RichText(
+                  text: TextSpan(children: [
+                    TextSpan(
+                      text: 'Explore. ',
+                      style: TextStyle(
+                        fontSize: 28.sp,
+                        fontWeight: FontWeight.bold,
+                        color: MediaQuery.of(context).platformBrightness ==
+                                Brightness.dark
+                            ? Colors.white
+                            : Colors.black,
+                      ),
                     ),
-                  ),
-                  TextSpan(
-                    text: 'Discover.',
-                    style: TextStyle(
-                      fontSize: 28.sp,
-                      color: Theme.of(context).primaryColor,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  )
-                ]),
+                    TextSpan(
+                      text: 'Discover.',
+                      style: TextStyle(
+                        fontSize: 28.sp,
+                        color: Theme.of(context).primaryColor,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    )
+                  ]),
+                ),
+              ),
+            ),
+          ),
+          DelayedDisplay(
+            slidingBeginOffset: Offset(.35, 0),
+            delay: Duration(milliseconds: 200),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                margin: EdgeInsets.only(top: 30.h),
+                child: Text(
+                  'Browse new and exciting applications added to the app every single week.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 17.sp,
+                      fontWeight: FontWeight.w500),
+                ),
               ),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              margin: EdgeInsets.only(top: 30.h),
-              child: Text(
-                'Browse new and exciting applications added to the app every single week.',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    color: Colors.grey, fontSize: 17.sp, fontWeight: FontWeight.w500),
-              ),
-            ),
-          ),
-           Padding(
             padding: const EdgeInsets.fromLTRB(120, 50, 120, 20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Container(
-                width: 17,
-                height: 17,
-                decoration: BoxDecoration(
-                  color: Colors.transparent,
-                  border: Border.all(color: Color(0xfff7bb2c), width: 4),
-                  shape: BoxShape.circle
+                  width: 17,
+                  height: 17,
+                  decoration: BoxDecoration(
+                      color: Colors.transparent,
+                      border: Border.all(color: Color(0xfff7bb2c), width: 4),
+                      shape: BoxShape.circle),
+                  child: Text(""),
                 ),
-                child: Text(""),
-                            ),
-              Container(
-                width: 10,
-                height: 10,
-                decoration: BoxDecoration(
-                  color: Color(0xffebebeb).withOpacity(0.8),
-                  shape: BoxShape.circle
+                Container(
+                  width: 10,
+                  height: 10,
+                  decoration: BoxDecoration(
+                      color: Color(0xffebebeb).withOpacity(0.8),
+                      shape: BoxShape.circle),
                 ),
-              ),
-
-              
-
-              Container(
-                width: 10,
-                height: 10,
-                decoration: BoxDecoration(
-                  color: Color(0xffebebeb).withOpacity(0.8),
-                  shape: BoxShape.circle
+                Container(
+                  width: 10,
+                  height: 10,
+                  decoration: BoxDecoration(
+                      color: Color(0xffebebeb).withOpacity(0.8),
+                      shape: BoxShape.circle),
                 ),
-              ),
-            ],),
+              ],
+            ),
           ),
         ],
       ),
@@ -227,7 +238,7 @@ class _firstPageState extends State<firstPage> {
 }
 
 class seccondPage extends StatefulWidget {
-  const seccondPage({Key,key}) : super(key: key);
+  const seccondPage({Key, key}) : super(key: key);
 
   @override
   _secondPageState createState() => _secondPageState();
@@ -245,52 +256,65 @@ class _secondPageState extends State<seccondPage> {
               width: double.infinity,
               height: 340.h,
               decoration: BoxDecoration(
-                  color: SchedulerBinding.instance.window.platformBrightness == Brightness.dark ? 
-                  Color(0xff303030):
-                  Color(0xfff7f7f7),
-                  image: DecorationImage(image:  SchedulerBinding.instance.window.platformBrightness == Brightness.dark ?  
-              AssetImage('assets/gifs/gif2_dark.gif') :
-              AssetImage('assets/gifs/gif2_light.gif')),
+                color: SchedulerBinding.instance?.window.platformBrightness ==
+                        Brightness.dark
+                    ? Color(0xff303030)
+                    : Color(0xfff7f7f7),
+                image: DecorationImage(
+                    image:
+                        SchedulerBinding.instance?.window.platformBrightness ==
+                                Brightness.dark
+                            ? AssetImage('assets/gifs/gif2_dark.gif')
+                            : AssetImage('assets/gifs/gif2_light.gif')),
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              margin: EdgeInsets.only(top: 40.h),
-              child: RichText(
-                text: TextSpan(children: [
-                  TextSpan(
-                    text:'Watch. ',
-                    style: TextStyle(
-                      fontSize: 28.sp,
-                      fontWeight: FontWeight.bold,
-                      color:MediaQuery.of(context).platformBrightness ==
-                          Brightness.dark
-                          ? Colors.white
-                          : Colors.black,
+          DelayedDisplay(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                margin: EdgeInsets.only(top: 40.h),
+                child: RichText(
+                  text: TextSpan(children: [
+                    TextSpan(
+                      text: 'Watch. ',
+                      style: TextStyle(
+                        fontSize: 28.sp,
+                        fontWeight: FontWeight.bold,
+                        color: MediaQuery.of(context).platformBrightness ==
+                                Brightness.dark
+                            ? Colors.white
+                            : Colors.black,
+                      ),
                     ),
-                  ),
-                  TextSpan(
-                    text: 'Learn.',
-                    style: TextStyle(
-                      fontSize: 28.sp,
-                      color: Theme.of(context).primaryColor,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  )
-                ]),
+                    TextSpan(
+                      text: 'Learn.',
+                      style: TextStyle(
+                        fontSize: 28.sp,
+                        color: Theme.of(context).primaryColor,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    )
+                  ]),
+                ),
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              margin: EdgeInsets.only(top: 30.h),
-              child: Text(
-                "Like an application you’ve discovered? Watch the video it was featured in on YouTube.",                textAlign: TextAlign.center,
-                style: TextStyle(
-                    color: Colors.grey, fontSize: 17.sp, fontWeight: FontWeight.w500),
+          DelayedDisplay(
+            slidingBeginOffset: Offset(.35, 0),
+            delay: Duration(milliseconds: 200),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                margin: EdgeInsets.only(top: 30.h),
+                child: Text(
+                  "Like an application you’ve discovered? Watch the video it was featured in on YouTube.",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 17.sp,
+                      fontWeight: FontWeight.w500),
+                ),
               ),
             ),
           ),
@@ -299,43 +323,40 @@ class _secondPageState extends State<seccondPage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-              Container(
-                width: 10,
-                height: 10,
-                decoration: BoxDecoration(
-                  color: Color(0xffebebeb).withOpacity(0.8),
-                  shape: BoxShape.circle
+                Container(
+                  width: 10,
+                  height: 10,
+                  decoration: BoxDecoration(
+                      color: Color(0xffebebeb).withOpacity(0.8),
+                      shape: BoxShape.circle),
                 ),
-              ),
-
-              Container(
-                width: 17,
-                height: 17,
-                decoration: BoxDecoration(
-                  color: Colors.transparent,
-                  border: Border.all(color: Color(0xfff7bb2c), width: 4),
-                  shape: BoxShape.circle
+                Container(
+                  width: 17,
+                  height: 17,
+                  decoration: BoxDecoration(
+                      color: Colors.transparent,
+                      border: Border.all(color: Color(0xfff7bb2c), width: 4),
+                      shape: BoxShape.circle),
+                  child: Text(""),
                 ),
-                child: Text(""),
-              ),
-
-              Container(
-                width: 10,
-                height: 10,
-                decoration: BoxDecoration(
-                  color: Color(0xffebebeb).withOpacity(0.8),
-                  shape: BoxShape.circle
+                Container(
+                  width: 10,
+                  height: 10,
+                  decoration: BoxDecoration(
+                      color: Color(0xffebebeb).withOpacity(0.8),
+                      shape: BoxShape.circle),
                 ),
-              ),
-            ],),
+              ],
+            ),
           ),
         ],
       ),
     );
   }
 }
+
 class thirdPage extends StatefulWidget {
-  const thirdPage({Key,key}) : super(key: key);
+  const thirdPage({Key, key}) : super(key: key);
 
   @override
   _thirdPageState createState() => _thirdPageState();
@@ -353,53 +374,68 @@ class _thirdPageState extends State<thirdPage> {
               width: double.infinity,
               height: 330.h,
               decoration: BoxDecoration(
-                  color: SchedulerBinding.instance.window.platformBrightness == Brightness.dark ? 
-                  Color(0xff303030):
-                  Color(0xfff7f7f7),
-                  image: DecorationImage(image:  SchedulerBinding.instance.window.platformBrightness == Brightness.dark ?  
-              AssetImage('assets/gifs/gif3_dark.gif') :
-              AssetImage('assets/gifs/gif3_light.gif')),
+                color: SchedulerBinding.instance?.window.platformBrightness ==
+                        Brightness.dark
+                    ? Color(0xff303030)
+                    : Color(0xfff7f7f7),
+                image: DecorationImage(
+                    image:
+                        SchedulerBinding.instance?.window.platformBrightness ==
+                                Brightness.dark
+                            ? AssetImage('assets/gifs/gif3_dark.gif')
+                            : AssetImage('assets/gifs/gif3_light.gif')),
               ),
             ),
           ),
-          SizedBox(height: 10.h,),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              margin: EdgeInsets.only(top: 40.h),
-              child: RichText(
-                text: TextSpan(children: [
-                  TextSpan(
-                    text:'Curate. ',
-                    style: TextStyle(
-                      fontSize: 28.sp,
-                      fontWeight: FontWeight.bold,
-                      color:MediaQuery.of(context).platformBrightness ==
-                          Brightness.dark
-                          ? Colors.white
-                          : Colors.black,
+          SizedBox(
+            height: 10.h,
+          ),
+          DelayedDisplay(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                margin: EdgeInsets.only(top: 40.h),
+                child: RichText(
+                  text: TextSpan(children: [
+                    TextSpan(
+                      text: 'Curate. ',
+                      style: TextStyle(
+                        fontSize: 28.sp,
+                        fontWeight: FontWeight.bold,
+                        color: MediaQuery.of(context).platformBrightness ==
+                                Brightness.dark
+                            ? Colors.white
+                            : Colors.black,
+                      ),
                     ),
-                  ),
-                  TextSpan(
-                    text: 'Rate.',
-                    style: TextStyle(
-                      fontSize: 28.sp,
-                      color: Theme.of(context).primaryColor,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  )
-                ]),
+                    TextSpan(
+                      text: 'Rate.',
+                      style: TextStyle(
+                        fontSize: 28.sp,
+                        color: Theme.of(context).primaryColor,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    )
+                  ]),
+                ),
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              margin: EdgeInsets.only(top: 30.h),
-              child: Text(
-                "Create your very own lists of applications and provide your own ratings and reviews of each app!",                textAlign: TextAlign.center,
-                style: TextStyle(
-                    color: Colors.grey, fontSize: 17.sp, fontWeight: FontWeight.w500),
+          DelayedDisplay(
+            slidingBeginOffset: Offset(.35, 0),
+            delay: Duration(milliseconds: 200),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                margin: EdgeInsets.only(top: 30.h),
+                child: Text(
+                  "Create your very own lists of applications and provide your own ratings and reviews of each app!",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 17.sp,
+                      fontWeight: FontWeight.w500),
+                ),
               ),
             ),
           ),
@@ -408,42 +444,32 @@ class _thirdPageState extends State<thirdPage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-              Container(
-                width: 10,
-                height: 10,
-                decoration: BoxDecoration(
-                  color: Color(0xffebebeb).withOpacity(0.8),
-                  shape: BoxShape.circle
+                Container(
+                  width: 10,
+                  height: 10,
+                  decoration: BoxDecoration(
+                      color: Color(0xffebebeb).withOpacity(0.8),
+                      shape: BoxShape.circle),
                 ),
-              ),
-
-
-              Container(
-                width: 10,
-                height: 10,
-                decoration: BoxDecoration(
-                  color: Color(0xffebebeb).withOpacity(0.8),
-                  shape: BoxShape.circle
+                Container(
+                  width: 10,
+                  height: 10,
+                  decoration: BoxDecoration(
+                      color: Color(0xffebebeb).withOpacity(0.8),
+                      shape: BoxShape.circle),
                 ),
-              ),
-
-              
-              Container(
-                width: 17,
-                height: 17,
-                decoration: BoxDecoration(
-                  color: Colors.transparent,
-                  border: Border.all(color: Color(0xfff7bb2c), width: 4),
-                  shape: BoxShape.circle
+                Container(
+                  width: 17,
+                  height: 17,
+                  decoration: BoxDecoration(
+                      color: Colors.transparent,
+                      border: Border.all(color: Color(0xfff7bb2c), width: 4),
+                      shape: BoxShape.circle),
+                  child: Text(""),
                 ),
-                child: Text(""),
-              ),
-            ],),
+              ],
+            ),
           ),
-
-
-
-
 
           // ClipPath(
           //   clipper: CurveImage(),
@@ -452,7 +478,7 @@ class _thirdPageState extends State<thirdPage> {
           //     height: 350.h,
           //     decoration: BoxDecoration(
           //         color: Colors.transparent,
-          //         image: DecorationImage(image:  SchedulerBinding.instance.window.platformBrightness == Brightness.dark ?  
+          //         image: DecorationImage(image:  SchedulerBinding.instance.window.platformBrightness == Brightness.dark ?
           //     AssetImage('assets/gifs/gif3_dark.gif') :
           //     AssetImage('assets/gifs/gif3_light.gif')),
           //     ),
@@ -538,13 +564,14 @@ class _thirdPageState extends State<thirdPage> {
     );
   }
 }
+
 class CurveImage extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     var path = Path();
     path.lineTo(0.0, size.height - 30);
-    path.quadraticBezierTo(size.width / 4, size.height,
-        size.width / 2, size.height);
+    path.quadraticBezierTo(
+        size.width / 4, size.height, size.width / 2, size.height);
     path.quadraticBezierTo(size.width - (size.width / 4), size.height,
         size.width, size.height - 30);
     path.lineTo(size.width, 0.0);

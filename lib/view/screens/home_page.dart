@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:animations/animations.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -41,6 +42,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<Offset> offsetAnimation;
   Future<List<Video>>? videos;
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   String? wish;
   @override
   void initState() {
@@ -50,7 +52,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     )..repeat(reverse: true);
     offsetAnimation = Tween<Offset>(begin: Offset.zero, end: Offset(1.5, 0.0))
         .animate(CurvedAnimation(parent: _controller, curve: Curves.bounceOut));
-        
+
     getVideos();
     super.initState();
 
@@ -64,11 +66,11 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         playlistId: "PLRpUhZJr8rJ0W8tejKGBhew6J2PxTW3p3");
   }
 
-   Future<bool> _onBackPressed() {
-  return Future.delayed(Duration(milliseconds: 1), () {
-    return false;
-  });
-}
+  Future<bool> _onBackPressed() {
+    return Future.delayed(Duration(milliseconds: 1), () {
+      return false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -78,6 +80,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         builder: () => WillPopScope(
           onWillPop: _onBackPressed,
           child: Scaffold(
+            key: _scaffoldKey,
             bottomNavigationBar: SlideTransition(
                 position: offsetAnimation, child: CustomBottomNavigationBar(0)),
             body: Stack(
@@ -123,11 +126,9 @@ class _HomePageBodyState extends State<HomePageBody>
     controller.category.value = '';
     controller.catagoryAppList.clear();
     userdata();
-  
+
     getName();
     super.initState();
-
-    
   }
 
   String? image;
@@ -210,7 +211,7 @@ class _HomePageBodyState extends State<HomePageBody>
                                   text: '$name!',
                                   size: 18.sp,
                                   fontWeight: FontWeight.w500,
-                                  color: SchedulerBinding.instance.window
+                                  color: SchedulerBinding.instance?.window
                                               .platformBrightness ==
                                           Brightness.dark
                                       ? Colors.white
@@ -226,11 +227,11 @@ class _HomePageBodyState extends State<HomePageBody>
                                   // await authentication.signOut();
 
                                   // print("After Logout" + authentication.currentUser.toString());
-                                  var value = await popup(context,
-                                  "Are you sure you want to logout?",
-                                  "Yep! log me out.",
-                                  "Nope! just kidding."
-                                  );
+                                  var value = await popup(
+                                      context,
+                                      "Are you sure you want to logout?",
+                                      "Yep! log me out.",
+                                      "Nope! just kidding.");
 
                                   if (value) {
                                     // Navigator.pop(context);
@@ -261,7 +262,7 @@ class _HomePageBodyState extends State<HomePageBody>
                                 },
                                 icon: Icon(
                                   Icons.logout,
-                                  color: SchedulerBinding.instance.window
+                                  color: SchedulerBinding.instance?.window
                                               .platformBrightness ==
                                           Brightness.dark
                                       ? Colors.white
@@ -285,7 +286,7 @@ class _HomePageBodyState extends State<HomePageBody>
                         size: 28.sp,
                         fontWeight: FontWeight.w700,
                         color: SchedulerBinding
-                                    .instance.window.platformBrightness ==
+                                    .instance?.window.platformBrightness ==
                                 Brightness.dark
                             ? Colors.white
                             : Colors.black,
@@ -302,7 +303,7 @@ class _HomePageBodyState extends State<HomePageBody>
                             size: 20.sp,
                             fontWeight: FontWeight.w700,
                             color: SchedulerBinding
-                                        .instance.window.platformBrightness ==
+                                        .instance?.window.platformBrightness ==
                                     Brightness.dark
                                 ? Colors.white
                                 : Colors.black,
@@ -326,10 +327,9 @@ class _HomePageBodyState extends State<HomePageBody>
                                                 onPressed: () {
                                                   Navigator.pop(context);
                                                 },
-                                                style:
-                                                    OutlinedButton.styleFrom(
-                                                        shape:
-                                                            RoundedRectangleBorder(
+                                                style: OutlinedButton.styleFrom(
+                                                    shape:
+                                                        RoundedRectangleBorder(
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           15.0.r),
@@ -344,7 +344,7 @@ class _HomePageBodyState extends State<HomePageBody>
                                                       Icons.arrow_back_ios,
                                                       color: SchedulerBinding
                                                                   .instance
-                                                                  .window
+                                                                  ?.window
                                                                   .platformBrightness ==
                                                               Brightness.dark
                                                           ? Colors.white
@@ -357,7 +357,7 @@ class _HomePageBodyState extends State<HomePageBody>
                                                           FontWeight.w500,
                                                       color: SchedulerBinding
                                                                   .instance
-                                                                  .window
+                                                                  ?.window
                                                                   .platformBrightness ==
                                                               Brightness.dark
                                                           ? Colors.white
@@ -373,7 +373,7 @@ class _HomePageBodyState extends State<HomePageBody>
                                                 fontWeight: FontWeight.w700,
                                                 color: SchedulerBinding
                                                             .instance
-                                                            .window
+                                                            ?.window
                                                             .platformBrightness ==
                                                         Brightness.dark
                                                     ? Colors.white
@@ -388,42 +388,39 @@ class _HomePageBodyState extends State<HomePageBody>
                                               SizedBox(height: 14.h),
                                               DropdownButton<String>(
                                                 value: 'Filter By',
-                                                icon: const Icon(Icons
-                                                    .keyboard_arrow_down),
+                                                icon: const Icon(
+                                                    Icons.keyboard_arrow_down),
                                                 iconSize: 24.h,
                                                 isExpanded: true,
                                                 style: TextStyle(
                                                   fontFamily: 'Satoshi',
                                                   color: SchedulerBinding
                                                               .instance
-                                                              .window
+                                                              ?.window
                                                               .platformBrightness ==
                                                           Brightness.dark
                                                       ? Colors.white
                                                       : Colors.black,
                                                 ),
                                                 underline: null,
-                                                onChanged:
-                                                    (String? newValue) {
+                                                onChanged: (String? newValue) {
                                                   Navigator.push(
                                                       context,
                                                       MaterialPageRoute(
-                                                          builder: (_) =>
-                                                              SearchPage(
-                                                                filterValue: newValue ==
-                                                                        null
-                                                                    ? 'Filter By'
-                                                                    : newValue,
-                                                              )));
+                                                          builder:
+                                                              (_) => SearchPage(
+                                                                    filterValue: newValue ==
+                                                                            null
+                                                                        ? 'Filter By'
+                                                                        : newValue,
+                                                                  )));
                                                 },
                                                 items: <String>[
                                                   'Filter By',
                                                   'Latest',
                                                   'Older',
                                                   'Popularity',
-                                                ].map<
-                                                        DropdownMenuItem<
-                                                            String>>(
+                                                ].map<DropdownMenuItem<String>>(
                                                     (String value) {
                                                   return DropdownMenuItem<
                                                       String>(
@@ -434,7 +431,8 @@ class _HomePageBodyState extends State<HomePageBody>
                                               ),
                                               SizedBox(height: 24.h),
                                               StreamBuilder<QuerySnapshot>(
-                                                  stream: FirebaseFirestore.instance
+                                                  stream: FirebaseFirestore
+                                                      .instance
                                                       .collection('categories')
                                                       .orderBy('name')
                                                       .snapshots(),
@@ -454,38 +452,40 @@ class _HomePageBodyState extends State<HomePageBody>
                                                                 childAspectRatio:
                                                                     1.0,
                                                                 mainAxisExtent:
-                                                                    MediaQuery.of(
-                                                                                context)
+                                                                    MediaQuery.of(context)
                                                                             .size
                                                                             .height /
                                                                         6,
-                                                                crossAxisCount: 2,
+                                                                crossAxisCount:
+                                                                    2,
                                                                 crossAxisSpacing:
                                                                     12.h,
                                                                 mainAxisSpacing:
                                                                     12.h),
-                                                              children: snapshot.data!.docs.map((document) {
-                                                                return InkWell(
+                                                            children: snapshot
+                                                                .data!.docs
+                                                                .map(
+                                                                    (document) {
+                                                              return InkWell(
                                                                 onTap: () {
-                                                                  Navigator.pop(context);
-                                                                  Navigator.of(context).pushReplacement(
-                                                                    MaterialPageRoute(
-                                                                        builder: (context) =>
-                                                                            ShowCategories(
-                                                                                categoryValue:
-                                                                                    document['name'])));
+                                                                  Navigator.pop(
+                                                                      context);
+                                                                  Navigator.of(
+                                                                          context)
+                                                                      .pushReplacement(MaterialPageRoute(
+                                                                          builder: (context) =>
+                                                                              ShowCategories(categoryValue: document['name'])));
                                                                 },
                                                                 child:
-                                                                    CategoriesBox(                                                               
-                                                                    title: document['name'],
-                                                                    imagePath:
+                                                                    CategoriesBox(
+                                                                  title: document[
+                                                                      'name'],
+                                                                  imagePath:
                                                                       kCategoriesImagesNames[
                                                                           i],
-                                                                                                                                    ),
+                                                                ),
                                                               );
-                                                            }).toList()
-                                                                
-                                                          ),
+                                                            }).toList()),
                                                       );
                                                     } else
                                                       return Container();
@@ -567,7 +567,7 @@ class _HomePageBodyState extends State<HomePageBody>
                         size: 18.sp,
                         fontWeight: FontWeight.w700,
                         color: SchedulerBinding
-                                    .instance.window.platformBrightness ==
+                                    .instance?.window.platformBrightness ==
                                 Brightness.dark
                             ? Colors.white
                             : Colors.black,
@@ -590,76 +590,70 @@ class _HomePageBodyState extends State<HomePageBody>
                     // ),
 
                     Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 10.0),
-                            child: FutureBuilder(
-                                future: Future.delayed(Duration(seconds: 2)),
-                                builder: (context, snap) {
-                                  return AnimatedList(
-                                      key: controller.listKey,
-                                      physics: NeverScrollableScrollPhysics(),
-                                      shrinkWrap: true,
-                                      initialItemCount:
-                                          controller.appList.length,
-                                      itemBuilder: (context, index, animation) {
-                                        String? appId = controller.appList
-                                            .elementAt(index)
-                                            .appId;
-                                        bool app = false;
-                                        for (int i = 0;
-                                            i < appIdsList.length;
-                                            i++) {
-                                          if (appId == appIdsList[i]) {
-                                            app = true;
-                                            break;
-                                          }
-                                        }
-                                        return SlideTransition(
-                                          position: animation.drive(_offset),
-                                          child: ApplicationContainer(
-                                            favColor: app
-                                                ? Colors.red
-                                                : Colors.grey[400],
-                                            color: controller.appList
-                                                .elementAt(index)
-                                                .color,
-                                            applicationTitle: controller.appList
-                                                .elementAt(index)
-                                                .applicationTitle,
-                                            category: controller.appList
-                                                .elementAt(index)
-                                                .category,
-                                            backgroundColor: Color(int.parse(
-                                                '0xff${controller.appList.elementAt(index).color}')),
-                                            iconName: controller.appList
-                                                .elementAt(index)
-                                                .iconName,
-                                            appId: controller.appList
-                                                .elementAt(index)
-                                                .appId,
-                                            description: controller.appList
-                                                .elementAt(index)
-                                                .description,
-                                            ratting: controller.appList
-                                                .elementAt(index)
-                                                .ratting
-                                                .toString(),
-                                            developer: controller.appList
-                                                .elementAt(index)
-                                                .developer
-                                                .toString(),
-                                            link: controller.appList
-                                                .elementAt(index)
-                                                .link
-                                                .toString(),
-                                          ),
-                                        );
-                                      });
-                                }),
-                          ),
+                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                      child: FutureBuilder(
+                          future: Future.delayed(Duration(seconds: 2)),
+                          builder: (context, snap) {
+                            return AnimatedList(
+                                key: controller.listKey,
+                                physics: NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                initialItemCount: controller.appList.length,
+                                itemBuilder: (context, index, animation) {
+                                  String? appId =
+                                      controller.appList.elementAt(index).appId;
+                                  bool app = false;
+                                  for (int i = 0; i < appIdsList.length; i++) {
+                                    if (appId == appIdsList[i]) {
+                                      app = true;
+                                      break;
+                                    }
+                                  }
+                                  return SlideTransition(
+                                    position: animation.drive(_offset),
+                                    child: ApplicationContainer(
+                                      favColor:
+                                          app ? Colors.red : Colors.grey[400],
+                                      color: controller.appList
+                                          .elementAt(index)
+                                          .color,
+                                      applicationTitle: controller.appList
+                                          .elementAt(index)
+                                          .applicationTitle,
+                                      category: controller.appList
+                                          .elementAt(index)
+                                          .category,
+                                      backgroundColor: Color(int.parse(
+                                          '0xff${controller.appList.elementAt(index).color}')),
+                                      iconName: controller.appList
+                                          .elementAt(index)
+                                          .iconName,
+                                      appId: controller.appList
+                                          .elementAt(index)
+                                          .appId,
+                                      description: controller.appList
+                                          .elementAt(index)
+                                          .description,
+                                      ratting: controller.appList
+                                          .elementAt(index)
+                                          .ratting
+                                          .toString(),
+                                      developer: controller.appList
+                                          .elementAt(index)
+                                          .developer
+                                          .toString(),
+                                      link: controller.appList
+                                          .elementAt(index)
+                                          .link
+                                          .toString(),
+                                    ),
+                                  );
+                                });
+                          }),
+                    ),
 
                     // controller.category.isEmpty
-                    //     ? 
+                    //     ?
                     //     : Padding(
                     //         padding:
                     //             const EdgeInsets.symmetric(horizontal: 10.0),
@@ -858,24 +852,20 @@ class ApplicationContainer extends StatefulWidget {
 class _ApplicationContainerState extends State<ApplicationContainer> {
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (_) => AppsDetailsPage(
-                    favColor: widget.favColor,
-                    color: widget.color,
-                    link: widget.link,
-                    developer: this.widget.developer,
-                    description: widget.description,
-                    appId: widget.appId,
-                    applicationTitle: widget.applicationTitle,
-                    category: widget.category,
-                    iconName: widget.iconName,
-                    ratting: widget.ratting)));
-      },
-      child: Container(
+    return OpenContainer(
+      openBuilder: (context, action) => AppsDetailsPage(
+          favColor: widget.favColor,
+          color: widget.color,
+          backgroundColor: widget.backgroundColor,
+          link: widget.link,
+          developer: this.widget.developer,
+          description: widget.description,
+          appId: widget.appId,
+          applicationTitle: widget.applicationTitle,
+          category: widget.category,
+          iconName: widget.iconName,
+          ratting: widget.ratting),
+      closedBuilder: (context1, action) => Container(
         width: double.infinity,
         padding: EdgeInsets.all(20.h),
         margin: EdgeInsets.only(bottom: 16.h),
@@ -883,7 +873,7 @@ class _ApplicationContainerState extends State<ApplicationContainer> {
           boxShadow: [
             BoxShadow(color: Colors.black12, spreadRadius: 1, blurRadius: 10)
           ],
-          color: SchedulerBinding.instance.window.platformBrightness !=
+          color: SchedulerBinding.instance?.window.platformBrightness !=
                   Brightness.dark
               ? widget.backgroundColor
               : Colors.grey.shade700.withOpacity(0.5),
@@ -894,7 +884,7 @@ class _ApplicationContainerState extends State<ApplicationContainer> {
             Container(
               padding: EdgeInsets.all(20.h),
               decoration: BoxDecoration(
-                color: SchedulerBinding.instance.window.platformBrightness ==
+                color: SchedulerBinding.instance?.window.platformBrightness ==
                         Brightness.dark
                     ? Colors.black38
                     : Colors.white,
@@ -915,7 +905,7 @@ class _ApplicationContainerState extends State<ApplicationContainer> {
                             CustomText(
                                 text: widget.applicationTitle ?? '',
                                 size: 18.sp,
-                                color: SchedulerBinding.instance.window
+                                color: SchedulerBinding.instance?.window
                                             .platformBrightness ==
                                         Brightness.dark
                                     ? Colors.white
@@ -940,7 +930,7 @@ class _ApplicationContainerState extends State<ApplicationContainer> {
                           text: '1k Reviews',
                           size: 12.sp,
                           color: SchedulerBinding
-                                      .instance.window.platformBrightness ==
+                                      .instance?.window.platformBrightness ==
                                   Brightness.dark
                               ? Colors.white
                               : Colors.black,
@@ -980,11 +970,8 @@ class _ApplicationContainerState extends State<ApplicationContainer> {
                         'category': widget.category,
                         'iconName': widget.iconName,
                         'ratting': widget.ratting
-                      }, context);
-                      setState(() {
-                        
-                      });
-                      
+                      }, context1);
+                    setState(() {});
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(5.0),
