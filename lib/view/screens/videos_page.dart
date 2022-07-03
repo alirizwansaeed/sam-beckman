@@ -38,7 +38,7 @@ class _VideosPageState extends State<VideosPage> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: SchedulerBinding.instance?.window.platformBrightness !=
+        color: SchedulerBinding.instance.window.platformBrightness !=
                 Brightness.dark
             ? Colors.grey.shade50
             : Color(0xff292b2e),
@@ -56,7 +56,7 @@ class _VideosPageState extends State<VideosPage> {
               text: 'Videos',
               size: 16.sp,
               fontWeight: FontWeight.bold,
-              color: SchedulerBinding.instance?.window.platformBrightness ==
+              color: SchedulerBinding.instance.window.platformBrightness ==
                       Brightness.dark
                   ? Colors.white
                   : Colors.black,

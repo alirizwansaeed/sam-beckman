@@ -80,7 +80,7 @@ class _SignupBodyState extends State<SignupBody> {
                   child: Column(
                     children: [
                       Image.asset(
-                        SchedulerBinding.instance?.window.platformBrightness ==
+                        SchedulerBinding.instance.window.platformBrightness ==
                                 Brightness.dark
                             ? 'assets/images/logo_dark.png'
                             : 'assets/images/logo.png',
@@ -89,7 +89,7 @@ class _SignupBodyState extends State<SignupBody> {
                       Card(
                         elevation: 3,
                         color: SchedulerBinding
-                                    .instance?.window.platformBrightness ==
+                                    .instance.window.platformBrightness ==
                                 Brightness.dark
                             ? Color(0xff46454D)
                             : Colors.white,
@@ -339,7 +339,7 @@ class _SignupBodyState extends State<SignupBody> {
       var validator}) {
     return TextFormField(
       style: TextStyle(
-          color: SchedulerBinding.instance?.window.platformBrightness ==
+          color: SchedulerBinding.instance.window.platformBrightness ==
                   Brightness.dark
               ? Colors.white
               : Colors.black),
@@ -350,7 +350,7 @@ class _SignupBodyState extends State<SignupBody> {
         hintText: hintText ?? '',
         hintStyle: TextStyle(
             fontSize: 14.sp,
-            color: SchedulerBinding.instance?.window.platformBrightness ==
+            color: SchedulerBinding.instance.window.platformBrightness ==
                     Brightness.dark
                 ? Colors.white
                 : Colors.black),
@@ -377,7 +377,7 @@ class _SignupBodyState extends State<SignupBody> {
       controller: controller,
       obscureText: isObscure,
       style: TextStyle(
-          color: SchedulerBinding.instance?.window.platformBrightness ==
+          color: SchedulerBinding.instance.window.platformBrightness ==
                   Brightness.dark
               ? Colors.white
               : Colors.black),
@@ -387,7 +387,7 @@ class _SignupBodyState extends State<SignupBody> {
         hintText: hintText ?? '',
         hintStyle: TextStyle(
             fontSize: 14.sp,
-            color: SchedulerBinding.instance?.window.platformBrightness ==
+            color: SchedulerBinding.instance.window.platformBrightness ==
                     Brightness.dark
                 ? Colors.white
                 : Colors.black),

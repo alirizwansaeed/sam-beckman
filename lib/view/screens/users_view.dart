@@ -107,7 +107,7 @@ class _users_viewState extends State<users_view> {
                                                 ],
                                                 color: SchedulerBinding
                                                             .instance
-                                                            ?.window
+                                                            .window
                                                             .platformBrightness ==
                                                         Brightness.dark
                                                     ? Colors.grey.shade800
@@ -137,7 +137,7 @@ class _users_viewState extends State<users_view> {
                                                           FontWeight.w700,
                                                       color: SchedulerBinding
                                                                   .instance
-                                                                  ?.window
+                                                                  .window
                                                                   .platformBrightness ==
                                                               Brightness.dark
                                                           ? Colors.white

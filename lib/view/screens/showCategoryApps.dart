@@ -104,7 +104,7 @@ class CategoriesBody extends StatelessWidget {
                               style: TextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: ScreenUtil().setSp(28),
-                                color: SchedulerBinding.instance?.window
+                                color: SchedulerBinding.instance.window
                                             .platformBrightness ==
                                         Brightness.dark
                                     ? Colors.white

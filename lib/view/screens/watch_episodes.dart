@@ -186,7 +186,7 @@ class _watch_episodesBodyState extends State<watch_episodesBody> {
                         Icon(
                           Icons.arrow_back_ios,
                           color: SchedulerBinding
-                                      .instance?.window.platformBrightness ==
+                                      .instance.window.platformBrightness ==
                                   Brightness.dark
                               ? Colors.white
                               : Colors.black,
@@ -196,7 +196,7 @@ class _watch_episodesBodyState extends State<watch_episodesBody> {
                           size: 12.sp,
                           fontWeight: FontWeight.w500,
                           color: SchedulerBinding
-                                      .instance?.window.platformBrightness ==
+                                      .instance.window.platformBrightness ==
                                   Brightness.dark
                               ? Colors.white
                               : Colors.black,

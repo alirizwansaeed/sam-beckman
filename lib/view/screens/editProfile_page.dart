@@ -59,8 +59,8 @@ class _editProfile_pageState extends State<editProfile_page> {
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
-                              color: SchedulerBinding.instance?.window
-                                          .platformBrightness ==
+                              color: SchedulerBinding
+                                          .instance.window.platformBrightness ==
                                       Brightness.dark
                                   ? Colors.white
                                   : Colors.black,
@@ -150,8 +150,8 @@ class _editProfile_pageState extends State<editProfile_page> {
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
-                              color: SchedulerBinding.instance?.window
-                                          .platformBrightness ==
+                              color: SchedulerBinding
+                                          .instance.window.platformBrightness ==
                                       Brightness.dark
                                   ? Colors.white
                                   : Colors.black,

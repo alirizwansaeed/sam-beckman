@@ -60,7 +60,7 @@ class AppDisplayBox extends StatelessWidget {
               spreadRadius: 2.h,
             ),
           ],
-          color: SchedulerBinding.instance?.window.platformBrightness ==
+          color: SchedulerBinding.instance.window.platformBrightness ==
                   Brightness.dark
               ? Colors.grey.shade800
               : Colors.white,
@@ -82,7 +82,7 @@ class AppDisplayBox extends StatelessWidget {
                 text: applicationTitle,
                 size: 14.sp,
                 fontWeight: FontWeight.w700,
-                color: SchedulerBinding.instance?.window.platformBrightness ==
+                color: SchedulerBinding.instance.window.platformBrightness ==
                         Brightness.dark
                     ? Colors.white
                     : Colors.black,
@@ -91,7 +91,7 @@ class AppDisplayBox extends StatelessWidget {
                 text: category,
                 size: 12.sp,
                 fontWeight: FontWeight.w400,
-                color: SchedulerBinding.instance?.window.platformBrightness ==
+                color: SchedulerBinding.instance.window.platformBrightness ==
                         Brightness.dark
                     ? Colors.white
                     : Colors.black,

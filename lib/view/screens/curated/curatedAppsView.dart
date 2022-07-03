@@ -60,7 +60,7 @@ class _CuratedAppsViewState extends State<CuratedAppsView>
   void initState() {
     // TODO: implement initState
     super.initState();
-    SchedulerBinding.instance?.addPostFrameCallback((_) {
+    SchedulerBinding.instance.addPostFrameCallback((_) {
       _shelfNameController.text = widget.shelfName;
       _linkUrlController.text = widget.linkUrl;
       selectedColor = widget.selectedColor;
@@ -114,7 +114,7 @@ class _CuratedAppsViewState extends State<CuratedAppsView>
                             fontSize: 16.sp,
                             fontWeight: FontWeight.w500,
                             color: SchedulerBinding
-                                        .instance?.window.platformBrightness ==
+                                        .instance.window.platformBrightness ==
                                     Brightness.dark
                                 ? Colors.white
                                 : Colors.black,
@@ -142,7 +142,7 @@ class _CuratedAppsViewState extends State<CuratedAppsView>
                                           fontSize: ScreenUtil().setSp(28),
                                           color: SchedulerBinding
                                                       .instance
-                                                      ?.window
+                                                      .window
                                                       .platformBrightness ==
                                                   Brightness.dark
                                               ? Colors.white
@@ -238,7 +238,7 @@ class _CuratedAppsViewState extends State<CuratedAppsView>
                                                                 size: 18.sp,
                                                                 color: SchedulerBinding
                                                                             .instance
-                                                                            ?.window
+                                                                            .window
                                                                             .platformBrightness ==
                                                                         Brightness
                                                                             .dark
@@ -279,7 +279,7 @@ class _CuratedAppsViewState extends State<CuratedAppsView>
                                                     size: 14.sp,
                                                     color: SchedulerBinding
                                                                 .instance
-                                                                ?.window
+                                                                .window
                                                                 .platformBrightness ==
                                                             Brightness.dark
                                                         ? Colors.white
@@ -754,7 +754,7 @@ class _CuratedAppsViewState extends State<CuratedAppsView>
                                     style: TextStyle(
                                       fontSize: 16.sp,
                                       fontWeight: FontWeight.w500,
-                                      color: SchedulerBinding.instance?.window
+                                      color: SchedulerBinding.instance.window
                                                   .platformBrightness ==
                                               Brightness.dark
                                           ? Colors.white

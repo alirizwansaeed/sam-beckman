@@ -211,7 +211,7 @@ class _HomePageBodyState extends State<HomePageBody>
                                   text: '$name!',
                                   size: 18.sp,
                                   fontWeight: FontWeight.w500,
-                                  color: SchedulerBinding.instance?.window
+                                  color: SchedulerBinding.instance.window
                                               .platformBrightness ==
                                           Brightness.dark
                                       ? Colors.white
@@ -262,7 +262,7 @@ class _HomePageBodyState extends State<HomePageBody>
                                 },
                                 icon: Icon(
                                   Icons.logout,
-                                  color: SchedulerBinding.instance?.window
+                                  color: SchedulerBinding.instance.window
                                               .platformBrightness ==
                                           Brightness.dark
                                       ? Colors.white
@@ -286,7 +286,7 @@ class _HomePageBodyState extends State<HomePageBody>
                         size: 28.sp,
                         fontWeight: FontWeight.w700,
                         color: SchedulerBinding
-                                    .instance?.window.platformBrightness ==
+                                    .instance.window.platformBrightness ==
                                 Brightness.dark
                             ? Colors.white
                             : Colors.black,
@@ -303,7 +303,7 @@ class _HomePageBodyState extends State<HomePageBody>
                             size: 20.sp,
                             fontWeight: FontWeight.w700,
                             color: SchedulerBinding
-                                        .instance?.window.platformBrightness ==
+                                        .instance.window.platformBrightness ==
                                     Brightness.dark
                                 ? Colors.white
                                 : Colors.black,
@@ -344,7 +344,7 @@ class _HomePageBodyState extends State<HomePageBody>
                                                       Icons.arrow_back_ios,
                                                       color: SchedulerBinding
                                                                   .instance
-                                                                  ?.window
+                                                                  .window
                                                                   .platformBrightness ==
                                                               Brightness.dark
                                                           ? Colors.white
@@ -357,7 +357,7 @@ class _HomePageBodyState extends State<HomePageBody>
                                                           FontWeight.w500,
                                                       color: SchedulerBinding
                                                                   .instance
-                                                                  ?.window
+                                                                  .window
                                                                   .platformBrightness ==
                                                               Brightness.dark
                                                           ? Colors.white
@@ -373,7 +373,7 @@ class _HomePageBodyState extends State<HomePageBody>
                                                 fontWeight: FontWeight.w700,
                                                 color: SchedulerBinding
                                                             .instance
-                                                            ?.window
+                                                            .window
                                                             .platformBrightness ==
                                                         Brightness.dark
                                                     ? Colors.white
@@ -396,7 +396,7 @@ class _HomePageBodyState extends State<HomePageBody>
                                                   fontFamily: 'Satoshi',
                                                   color: SchedulerBinding
                                                               .instance
-                                                              ?.window
+                                                              .window
                                                               .platformBrightness ==
                                                           Brightness.dark
                                                       ? Colors.white
@@ -567,7 +567,7 @@ class _HomePageBodyState extends State<HomePageBody>
                         size: 18.sp,
                         fontWeight: FontWeight.w700,
                         color: SchedulerBinding
-                                    .instance?.window.platformBrightness ==
+                                    .instance.window.platformBrightness ==
                                 Brightness.dark
                             ? Colors.white
                             : Colors.black,
@@ -873,7 +873,7 @@ class _ApplicationContainerState extends State<ApplicationContainer> {
           boxShadow: [
             BoxShadow(color: Colors.black12, spreadRadius: 1, blurRadius: 10)
           ],
-          color: SchedulerBinding.instance?.window.platformBrightness !=
+          color: SchedulerBinding.instance.window.platformBrightness !=
                   Brightness.dark
               ? widget.backgroundColor
               : Colors.grey.shade700.withOpacity(0.5),
@@ -884,7 +884,7 @@ class _ApplicationContainerState extends State<ApplicationContainer> {
             Container(
               padding: EdgeInsets.all(20.h),
               decoration: BoxDecoration(
-                color: SchedulerBinding.instance?.window.platformBrightness ==
+                color: SchedulerBinding.instance.window.platformBrightness ==
                         Brightness.dark
                     ? Colors.black38
                     : Colors.white,
@@ -905,7 +905,7 @@ class _ApplicationContainerState extends State<ApplicationContainer> {
                             CustomText(
                                 text: widget.applicationTitle ?? '',
                                 size: 18.sp,
-                                color: SchedulerBinding.instance?.window
+                                color: SchedulerBinding.instance.window
                                             .platformBrightness ==
                                         Brightness.dark
                                     ? Colors.white
@@ -930,7 +930,7 @@ class _ApplicationContainerState extends State<ApplicationContainer> {
                           text: '1k Reviews',
                           size: 12.sp,
                           color: SchedulerBinding
-                                      .instance?.window.platformBrightness ==
+                                      .instance.window.platformBrightness ==
                                   Brightness.dark
                               ? Colors.white
                               : Colors.black,

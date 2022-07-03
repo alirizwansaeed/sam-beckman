@@ -76,7 +76,7 @@ class _ReviewdAppPageBodyState extends State<ReviewdAppPageBody> {
                         fontWeight: FontWeight.w600,
                         fontSize: ScreenUtil().setSp(28),
                         color: SchedulerBinding
-                                    .instance?.window.platformBrightness ==
+                                    .instance.window.platformBrightness ==
                                 Brightness.dark
                             ? Colors.white
                             : Colors.black,

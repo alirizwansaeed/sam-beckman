@@ -39,7 +39,7 @@ class _onBoardingState extends State<onBoarding> {
         builder: () => SafeArea(
                 child: Scaffold(
                     body: Container(
-              color: SchedulerBinding.instance?.window.platformBrightness ==
+              color: SchedulerBinding.instance.window.platformBrightness ==
                       Brightness.dark
                   ? Color(0xff303030)
                   : Colors.white,
@@ -47,7 +47,7 @@ class _onBoardingState extends State<onBoarding> {
                 children: [
                   Container(
                     color:
-                        SchedulerBinding.instance?.window.platformBrightness ==
+                        SchedulerBinding.instance.window.platformBrightness ==
                                 Brightness.dark
                             ? Color(0xff303030)
                             : Colors.white,
@@ -139,16 +139,16 @@ class _firstPageState extends State<firstPage> {
                 width: double.infinity,
                 height: 340.h,
                 decoration: BoxDecoration(
-                  color: SchedulerBinding.instance?.window.platformBrightness ==
+                  color: SchedulerBinding.instance.window.platformBrightness ==
                           Brightness.dark
                       ? Color(0xff303030)
                       : Color(0xfff7f7f7),
                   image: DecorationImage(
-                      image: SchedulerBinding
-                                  .instance?.window.platformBrightness ==
-                              Brightness.dark
-                          ? AssetImage('assets/gifs/gif1_dark.gif')
-                          : AssetImage('assets/gifs/gif1_light.gif')),
+                      image:
+                          SchedulerBinding.instance.window.platformBrightness ==
+                                  Brightness.dark
+                              ? AssetImage('assets/gifs/gif1_dark.gif')
+                              : AssetImage('assets/gifs/gif1_light.gif')),
                 )),
           ),
           DelayedDisplay(
@@ -256,13 +256,13 @@ class _secondPageState extends State<seccondPage> {
               width: double.infinity,
               height: 340.h,
               decoration: BoxDecoration(
-                color: SchedulerBinding.instance?.window.platformBrightness ==
+                color: SchedulerBinding.instance.window.platformBrightness ==
                         Brightness.dark
                     ? Color(0xff303030)
                     : Color(0xfff7f7f7),
                 image: DecorationImage(
                     image:
-                        SchedulerBinding.instance?.window.platformBrightness ==
+                        SchedulerBinding.instance.window.platformBrightness ==
                                 Brightness.dark
                             ? AssetImage('assets/gifs/gif2_dark.gif')
                             : AssetImage('assets/gifs/gif2_light.gif')),
@@ -374,13 +374,13 @@ class _thirdPageState extends State<thirdPage> {
               width: double.infinity,
               height: 330.h,
               decoration: BoxDecoration(
-                color: SchedulerBinding.instance?.window.platformBrightness ==
+                color: SchedulerBinding.instance.window.platformBrightness ==
                         Brightness.dark
                     ? Color(0xff303030)
                     : Color(0xfff7f7f7),
                 image: DecorationImage(
                     image:
-                        SchedulerBinding.instance?.window.platformBrightness ==
+                        SchedulerBinding.instance.window.platformBrightness ==
                                 Brightness.dark
                             ? AssetImage('assets/gifs/gif3_dark.gif')
                             : AssetImage('assets/gifs/gif3_light.gif')),

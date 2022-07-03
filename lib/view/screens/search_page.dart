@@ -73,7 +73,7 @@ class _SearchPageBodyState extends State<SearchPageBody> {
               text: 'Find Your Favourite',
               fontWeight: FontWeight.w700,
               size: ScreenUtil().setSp(28),
-              color: SchedulerBinding.instance?.window.platformBrightness ==
+              color: SchedulerBinding.instance.window.platformBrightness ==
                       Brightness.dark
                   ? Colors.white
                   : Colors.black,
@@ -91,11 +91,11 @@ class _SearchPageBodyState extends State<SearchPageBody> {
                   // outlined border for search bar
                   decoration: BoxDecoration(
                     border: Border.all(
-                      color: SchedulerBinding
-                                  .instance?.window.platformBrightness ==
-                              Brightness.dark
-                          ? Colors.white
-                          : Colors.black,
+                      color:
+                          SchedulerBinding.instance.window.platformBrightness ==
+                                  Brightness.dark
+                              ? Colors.white
+                              : Colors.black,
                       width: 1.h,
                     ),
                     borderRadius: BorderRadius.circular(10.h),
@@ -203,8 +203,8 @@ class _SearchPageBodyState extends State<SearchPageBody> {
                             value,
                             style: TextStyle(
                               fontFamily: 'Satoshi',
-                              color: SchedulerBinding.instance?.window
-                                          .platformBrightness ==
+                              color: SchedulerBinding
+                                          .instance.window.platformBrightness ==
                                       Brightness.dark
                                   ? Colors.white
                                   : Colors.black,
@@ -222,7 +222,7 @@ class _SearchPageBodyState extends State<SearchPageBody> {
               text: 'Suggested',
               size: 20.sp,
               fontWeight: FontWeight.w700,
-              color: SchedulerBinding.instance?.window.platformBrightness ==
+              color: SchedulerBinding.instance.window.platformBrightness ==
                       Brightness.dark
                   ? Colors.white
                   : Colors.black,

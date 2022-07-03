@@ -50,7 +50,7 @@ class IconsWithTexts extends StatelessWidget {
                 text: subtitle,
                 size: 12.sp,
                 fontWeight: FontWeight.bold,
-                color: SchedulerBinding.instance?.window.platformBrightness ==
+                color: SchedulerBinding.instance.window.platformBrightness ==
                         Brightness.dark
                     ? Colors.white
                     : Colors.black),

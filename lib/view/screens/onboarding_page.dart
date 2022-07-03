@@ -16,7 +16,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
   bool? isDarkMode;
   @override
   void initState() {
-    brightness = SchedulerBinding.instance?.window.platformBrightness;
+    brightness = SchedulerBinding.instance.window.platformBrightness;
     isDarkMode = brightness == Brightness.dark;
     // TODO: implement initState
     super.initState();
@@ -24,7 +24,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
 
   @override
   Widget build(BuildContext context) {
-    brightness = SchedulerBinding.instance?.window.platformBrightness;
+    brightness = SchedulerBinding.instance.window.platformBrightness;
     isDarkMode = brightness == Brightness.dark;
     return ScreenUtilInit(
       designSize: const Size(360, 812),

@@ -80,7 +80,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
     return Container(
       margin: EdgeInsets.all(10),
       decoration: BoxDecoration(
-          color: SchedulerBinding.instance?.window.platformBrightness !=
+          color: SchedulerBinding.instance.window.platformBrightness !=
                   Brightness.dark
               ? Colors.white
               : Colors.black12.withOpacity(0.5),
@@ -99,7 +99,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
           SalomonBottomBarItem(
             icon: Icon(
               Icons.home,
-              color: SchedulerBinding.instance?.window.platformBrightness ==
+              color: SchedulerBinding.instance.window.platformBrightness ==
                       Brightness.dark
                   ? Colors.white
                   : Colors.black,
@@ -107,7 +107,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
             title: Text(
               "Home",
               style: GoogleFonts.roboto(
-                  color: SchedulerBinding.instance?.window.platformBrightness ==
+                  color: SchedulerBinding.instance.window.platformBrightness ==
                           Brightness.dark
                       ? Colors.white
                       : Colors.black,
@@ -127,7 +127,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
           SalomonBottomBarItem(
             icon: Icon(
               Icons.favorite,
-              color: SchedulerBinding.instance?.window.platformBrightness ==
+              color: SchedulerBinding.instance.window.platformBrightness ==
                       Brightness.dark
                   ? Colors.white
                   : Colors.black,
@@ -135,7 +135,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
             title: Text(
               "Favourites",
               style: GoogleFonts.roboto(
-                  color: SchedulerBinding.instance?.window.platformBrightness ==
+                  color: SchedulerBinding.instance.window.platformBrightness ==
                           Brightness.dark
                       ? Colors.white
                       : Colors.black,
@@ -149,7 +149,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
           SalomonBottomBarItem(
             icon: Icon(
               Icons.search,
-              color: SchedulerBinding.instance?.window.platformBrightness ==
+              color: SchedulerBinding.instance.window.platformBrightness ==
                       Brightness.dark
                   ? Colors.white
                   : Colors.black,
@@ -157,7 +157,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
             title: Text(
               "Search",
               style: GoogleFonts.roboto(
-                  color: SchedulerBinding.instance?.window.platformBrightness ==
+                  color: SchedulerBinding.instance.window.platformBrightness ==
                           Brightness.dark
                       ? Colors.white
                       : Colors.black,
@@ -172,7 +172,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
           SalomonBottomBarItem(
             icon: Icon(
               Icons.person,
-              color: SchedulerBinding.instance?.window.platformBrightness ==
+              color: SchedulerBinding.instance.window.platformBrightness ==
                       Brightness.dark
                   ? Colors.white
                   : Colors.black,
@@ -181,7 +181,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
             title: Text(
               "Profile",
               style: GoogleFonts.roboto(
-                  color: SchedulerBinding.instance?.window.platformBrightness ==
+                  color: SchedulerBinding.instance.window.platformBrightness ==
                           Brightness.dark
                       ? Colors.white
                       : Colors.black,

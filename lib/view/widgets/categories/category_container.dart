@@ -25,7 +25,7 @@ class CategoriesBox extends StatelessWidget {
             spreadRadius: 2.h,
           ),
         ],
-        color: SchedulerBinding.instance?.window.platformBrightness !=
+        color: SchedulerBinding.instance.window.platformBrightness !=
                 Brightness.dark
             ? Colors.white
             : Colors.grey.shade700,
@@ -43,7 +43,7 @@ class CategoriesBox extends StatelessWidget {
             text: title ?? '',
             size: 14.sp,
             fontWeight: FontWeight.w600,
-            color: SchedulerBinding.instance?.window.platformBrightness ==
+            color: SchedulerBinding.instance.window.platformBrightness ==
                     Brightness.dark
                 ? Colors.white
                 : Colors.black,

@@ -102,7 +102,7 @@ class _UserFollowProfilePageBodyState extends State<UserFollowProfilePageBody>
                               padding: const EdgeInsets.all(10.0),
                               child: Container(
                                 decoration: BoxDecoration(
-                                    color: SchedulerBinding.instance?.window
+                                    color: SchedulerBinding.instance.window
                                                 .platformBrightness !=
                                             Brightness.dark
                                         ? Colors.white
@@ -129,7 +129,7 @@ class _UserFollowProfilePageBodyState extends State<UserFollowProfilePageBody>
                                             fontWeight: FontWeight.bold,
                                             color: SchedulerBinding
                                                         .instance
-                                                        ?.window
+                                                        .window
                                                         .platformBrightness ==
                                                     Brightness.dark
                                                 ? Colors.white
@@ -276,7 +276,7 @@ class _UserFollowProfilePageBodyState extends State<UserFollowProfilePageBody>
                                         text: '${snapshot.data!['name']}',
                                         size: 20.sp,
                                         fontWeight: FontWeight.bold,
-                                        color: SchedulerBinding.instance?.window
+                                        color: SchedulerBinding.instance.window
                                                     .platformBrightness ==
                                                 Brightness.dark
                                             ? Colors.white
@@ -296,7 +296,7 @@ class _UserFollowProfilePageBodyState extends State<UserFollowProfilePageBody>
                                         decoration: BoxDecoration(
                                           color: SchedulerBinding
                                                       .instance
-                                                      ?.window
+                                                      .window
                                                       .platformBrightness !=
                                                   Brightness.dark
                                               ? Colors.grey.shade200
@@ -369,7 +369,7 @@ class _UserFollowProfilePageBodyState extends State<UserFollowProfilePageBody>
                                     text: 'Application',
                                     size: 20.sp,
                                     fontWeight: FontWeight.bold,
-                                    color: SchedulerBinding.instance?.window
+                                    color: SchedulerBinding.instance.window
                                                 .platformBrightness ==
                                             Brightness.dark
                                         ? Colors.white
@@ -400,7 +400,7 @@ class _UserFollowProfilePageBodyState extends State<UserFollowProfilePageBody>
                                           ApplicationWidget(
                                             backgroudColor: SchedulerBinding
                                                         .instance
-                                                        ?.window
+                                                        .window
                                                         .platformBrightness ==
                                                     Brightness.dark
                                                 ? Colors.grey.shade800
@@ -502,7 +502,7 @@ class StatsColumn extends StatelessWidget {
             text: title ?? '',
             size: 18.sp,
             fontWeight: FontWeight.bold,
-            color: SchedulerBinding.instance?.window.platformBrightness ==
+            color: SchedulerBinding.instance.window.platformBrightness ==
                     Brightness.dark
                 ? Colors.white
                 : Colors.black),

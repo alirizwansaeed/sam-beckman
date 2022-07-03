@@ -67,7 +67,7 @@ class _AddCuratedAppsState extends State<AddCuratedApps>
         child: Scaffold(
           resizeToAvoidBottomInset: false,
           backgroundColor:
-              SchedulerBinding.instance?.window.platformBrightness ==
+              SchedulerBinding.instance.window.platformBrightness ==
                       Brightness.dark
                   ? Color(0xff303030)
                   : Color(0xfffbfbfb),
@@ -105,11 +105,11 @@ class _AddCuratedAppsState extends State<AddCuratedApps>
                     style: TextStyle(
                       fontSize: 16.sp,
                       fontWeight: FontWeight.w500,
-                      color: SchedulerBinding
-                                  .instance?.window.platformBrightness ==
-                              Brightness.dark
-                          ? Colors.white
-                          : Colors.black,
+                      color:
+                          SchedulerBinding.instance.window.platformBrightness ==
+                                  Brightness.dark
+                              ? Colors.white
+                              : Colors.black,
                     ),
                   ),
                   style: TextButton.styleFrom(
@@ -137,7 +137,7 @@ class _AddCuratedAppsState extends State<AddCuratedApps>
                           fontWeight: FontWeight.w600,
                           fontSize: ScreenUtil().setSp(28),
                           color: SchedulerBinding
-                                      .instance?.window.platformBrightness ==
+                                      .instance.window.platformBrightness ==
                                   Brightness.dark
                               ? Colors.white
                               : Colors.black,
@@ -172,7 +172,7 @@ class _AddCuratedAppsState extends State<AddCuratedApps>
                     decoration: BoxDecoration(
                       border: Border.all(
                         color: SchedulerBinding
-                                    .instance?.window.platformBrightness ==
+                                    .instance.window.platformBrightness ==
                                 Brightness.dark
                             ? Colors.white
                             : Colors.black,
@@ -281,7 +281,7 @@ class _AddCuratedAppsState extends State<AddCuratedApps>
                               value,
                               style: TextStyle(
                                 fontFamily: 'Satoshi',
-                                color: SchedulerBinding.instance?.window
+                                color: SchedulerBinding.instance.window
                                             .platformBrightness ==
                                         Brightness.dark
                                     ? Colors.white
@@ -420,7 +420,7 @@ class AppDisplayBox extends StatelessWidget {
               spreadRadius: 2.h,
             ),
           ],
-          color: SchedulerBinding.instance?.window.platformBrightness ==
+          color: SchedulerBinding.instance.window.platformBrightness ==
                   Brightness.dark
               ? Colors.grey.shade800
               : Colors.white,
@@ -446,7 +446,7 @@ class AppDisplayBox extends StatelessWidget {
                     size: 14.sp,
                     fontWeight: FontWeight.w700,
                     color:
-                        SchedulerBinding.instance?.window.platformBrightness ==
+                        SchedulerBinding.instance.window.platformBrightness ==
                                 Brightness.dark
                             ? Colors.white
                             : Colors.black,
@@ -456,7 +456,7 @@ class AppDisplayBox extends StatelessWidget {
                     size: 12.sp,
                     fontWeight: FontWeight.w400,
                     color:
-                        SchedulerBinding.instance?.window.platformBrightness ==
+                        SchedulerBinding.instance.window.platformBrightness ==
                                 Brightness.dark
                             ? Colors.white
                             : Colors.black,

@@ -67,7 +67,7 @@ class _LoginBodyState extends State<LoginBody> {
                 child: Column(
                   children: [
                     Image.asset(
-                      SchedulerBinding.instance?.window.platformBrightness ==
+                      SchedulerBinding.instance.window.platformBrightness ==
                               Brightness.dark
                           ? 'assets/images/logo_dark.png'
                           : 'assets/images/logo.png',
@@ -77,11 +77,11 @@ class _LoginBodyState extends State<LoginBody> {
                     SizedBox(height: 24.h),
                     Card(
                       elevation: 3,
-                      color: SchedulerBinding
-                                  .instance?.window.platformBrightness ==
-                              Brightness.dark
-                          ? Color(0xff46454D)
-                          : Colors.white,
+                      color:
+                          SchedulerBinding.instance.window.platformBrightness ==
+                                  Brightness.dark
+                              ? Color(0xff46454D)
+                              : Colors.white,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15.r),
                       ),
@@ -95,7 +95,7 @@ class _LoginBodyState extends State<LoginBody> {
                             _text(text: 'Email Address'),
                             TextFormField(
                               style: TextStyle(
-                                  color: SchedulerBinding.instance?.window
+                                  color: SchedulerBinding.instance.window
                                               .platformBrightness ==
                                           Brightness.dark
                                       ? Colors.white
@@ -107,7 +107,7 @@ class _LoginBodyState extends State<LoginBody> {
                                 hintText: 'Enter your email address',
                                 hintStyle: TextStyle(
                                     fontSize: 14.sp,
-                                    color: SchedulerBinding.instance?.window
+                                    color: SchedulerBinding.instance.window
                                                 .platformBrightness ==
                                             Brightness.dark
                                         ? Colors.white
@@ -128,7 +128,7 @@ class _LoginBodyState extends State<LoginBody> {
                               controller: password,
                               obscureText: true,
                               style: TextStyle(
-                                  color: SchedulerBinding.instance?.window
+                                  color: SchedulerBinding.instance.window
                                               .platformBrightness ==
                                           Brightness.dark
                                       ? Colors.white
@@ -138,7 +138,7 @@ class _LoginBodyState extends State<LoginBody> {
                                 hintText: 'Enter your password',
                                 hintStyle: TextStyle(
                                     fontSize: 14.sp,
-                                    color: SchedulerBinding.instance?.window
+                                    color: SchedulerBinding.instance.window
                                                 .platformBrightness ==
                                             Brightness.dark
                                         ? Colors.white
@@ -258,7 +258,7 @@ class _LoginBodyState extends State<LoginBody> {
                         Ink(
                           decoration: BoxDecoration(
                             color: SchedulerBinding
-                                        .instance?.window.platformBrightness ==
+                                        .instance.window.platformBrightness ==
                                     Brightness.dark
                                 ? Colors.white
                                 : Colors.transparent,
@@ -286,7 +286,7 @@ class _LoginBodyState extends State<LoginBody> {
                         Ink(
                           decoration: BoxDecoration(
                             color: SchedulerBinding
-                                        .instance?.window.platformBrightness ==
+                                        .instance.window.platformBrightness ==
                                     Brightness.dark
                                 ? Colors.white
                                 : Colors.transparent,
@@ -332,7 +332,7 @@ class _LoginBodyState extends State<LoginBody> {
                               width: 43.w,
                               height: 43.h,
                               decoration: BoxDecoration(
-                                color: SchedulerBinding.instance?.window
+                                color: SchedulerBinding.instance.window
                                             .platformBrightness ==
                                         Brightness.dark
                                     ? Colors.white
@@ -360,7 +360,7 @@ class _LoginBodyState extends State<LoginBody> {
                           width: 43,
                           decoration: BoxDecoration(
                             color: SchedulerBinding
-                                        .instance?.window.platformBrightness ==
+                                        .instance.window.platformBrightness ==
                                     Brightness.dark
                                 ? Colors.white
                                 : Colors.transparent,
@@ -409,7 +409,7 @@ class _LoginBodyState extends State<LoginBody> {
                   style: TextButton.styleFrom(
                     padding: EdgeInsets.symmetric(vertical: 16.h),
                     backgroundColor:
-                        SchedulerBinding.instance?.window.platformBrightness ==
+                        SchedulerBinding.instance.window.platformBrightness ==
                                 Brightness.dark
                             ? Color(0xff46454D)
                             : Colors.white,
@@ -419,7 +419,7 @@ class _LoginBodyState extends State<LoginBody> {
                       borderRadius: BorderRadius.circular(25.r),
                       side: BorderSide(
                         color: SchedulerBinding
-                                    .instance?.window.platformBrightness ==
+                                    .instance.window.platformBrightness ==
                                 Brightness.dark
                             ? Colors.transparent
                             : Theme.of(context).primaryColor,
@@ -448,7 +448,7 @@ class _LoginBodyState extends State<LoginBody> {
                         fontSize: 16.sp,
                         fontWeight: FontWeight.w500,
                         color: SchedulerBinding
-                                    .instance?.window.platformBrightness ==
+                                    .instance.window.platformBrightness ==
                                 Brightness.dark
                             ? Colors.white
                             : Theme.of(context).primaryColor),

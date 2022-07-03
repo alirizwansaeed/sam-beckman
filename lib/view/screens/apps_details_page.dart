@@ -217,8 +217,8 @@ class _AppsDetailsPageBodyState extends State<AppsDetailsPageBody> {
                           children: [
                             Icon(
                               Icons.arrow_back_ios,
-                              color: SchedulerBinding.instance?.window
-                                          .platformBrightness ==
+                              color: SchedulerBinding
+                                          .instance.window.platformBrightness ==
                                       Brightness.dark
                                   ? Colors.white
                                   : Colors.black,
@@ -227,8 +227,8 @@ class _AppsDetailsPageBodyState extends State<AppsDetailsPageBody> {
                               text: 'Back',
                               size: 12.sp,
                               fontWeight: FontWeight.w500,
-                              color: SchedulerBinding.instance?.window
-                                          .platformBrightness ==
+                              color: SchedulerBinding
+                                          .instance.window.platformBrightness ==
                                       Brightness.dark
                                   ? Colors.white
                                   : Colors.black,
@@ -245,7 +245,7 @@ class _AppsDetailsPageBodyState extends State<AppsDetailsPageBody> {
                       margin: EdgeInsets.only(bottom: 70),
                       decoration: BoxDecoration(
                         color: SchedulerBinding
-                                    .instance?.window.platformBrightness ==
+                                    .instance.window.platformBrightness ==
                                 Brightness.dark
                             ? Colors.black38
                             : Colors.white,
@@ -279,7 +279,7 @@ class _AppsDetailsPageBodyState extends State<AppsDetailsPageBody> {
                                         text: '${widget.applicationTitle}',
                                         size: 20.sp,
                                         fontWeight: FontWeight.w700,
-                                        color: SchedulerBinding.instance?.window
+                                        color: SchedulerBinding.instance.window
                                                     .platformBrightness ==
                                                 Brightness.dark
                                             ? Colors.white
@@ -373,8 +373,8 @@ class _AppsDetailsPageBodyState extends State<AppsDetailsPageBody> {
                               text: 'Details',
                               size: 14.sp,
                               fontWeight: FontWeight.w500,
-                              color: SchedulerBinding.instance?.window
-                                          .platformBrightness ==
+                              color: SchedulerBinding
+                                          .instance.window.platformBrightness ==
                                       Brightness.dark
                                   ? Colors.white
                                   : Colors.black,
@@ -483,8 +483,8 @@ class _AppsDetailsPageBodyState extends State<AppsDetailsPageBody> {
                               text: 'Reviews',
                               size: 14.sp,
                               fontWeight: FontWeight.w500,
-                              color: SchedulerBinding.instance?.window
-                                          .platformBrightness ==
+                              color: SchedulerBinding
+                                          .instance.window.platformBrightness ==
                                       Brightness.dark
                                   ? Colors.white
                                   : Colors.black,
@@ -556,7 +556,7 @@ class _AppsDetailsPageBodyState extends State<AppsDetailsPageBody> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15.0.r),
                         color: SchedulerBinding
-                                    .instance?.window.platformBrightness !=
+                                    .instance.window.platformBrightness !=
                                 Brightness.dark
                             ? Colors.grey.shade200
                             : Colors.grey.shade800,
@@ -569,8 +569,8 @@ class _AppsDetailsPageBodyState extends State<AppsDetailsPageBody> {
                             CustomText(
                               text: 'Watch Feature Episode',
                               size: 12.sp,
-                              color: SchedulerBinding.instance?.window
-                                          .platformBrightness ==
+                              color: SchedulerBinding
+                                          .instance.window.platformBrightness ==
                                       Brightness.dark
                                   ? Colors.white
                                   : Colors.black,
@@ -645,7 +645,7 @@ class _AppsDetailsPageBodyState extends State<AppsDetailsPageBody> {
                           text: '${widget.developer.toString()}',
                           size: 12.sp,
                           color: SchedulerBinding
-                                      .instance?.window.platformBrightness ==
+                                      .instance.window.platformBrightness ==
                                   Brightness.dark
                               ? Colors.white
                               : Colors.black,
@@ -809,7 +809,7 @@ class _AppsDetailsPageBodyState extends State<AppsDetailsPageBody> {
                                           EdgeInsets.symmetric(vertical: 10),
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(10),
-                                        color: SchedulerBinding.instance?.window
+                                        color: SchedulerBinding.instance.window
                                                     .platformBrightness !=
                                                 Brightness.dark
                                             ? Colors.white
@@ -875,7 +875,7 @@ class _AppsDetailsPageBodyState extends State<AppsDetailsPageBody> {
                                                               FontWeight.bold,
                                                           color: SchedulerBinding
                                                                       .instance
-                                                                      ?.window
+                                                                      .window
                                                                       .platformBrightness ==
                                                                   Brightness
                                                                       .dark
@@ -909,7 +909,7 @@ class _AppsDetailsPageBodyState extends State<AppsDetailsPageBody> {
                                                     fontWeight: FontWeight.bold,
                                                     color: SchedulerBinding
                                                                 .instance
-                                                                ?.window
+                                                                .window
                                                                 .platformBrightness ==
                                                             Brightness.dark
                                                         ? Colors.white
@@ -932,7 +932,7 @@ class _AppsDetailsPageBodyState extends State<AppsDetailsPageBody> {
                                                   style: TextStyle(
                                                     color: SchedulerBinding
                                                                 .instance
-                                                                ?.window
+                                                                .window
                                                                 .platformBrightness ==
                                                             Brightness.dark
                                                         ? Colors.white

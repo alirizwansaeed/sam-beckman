@@ -79,7 +79,7 @@ class _UserProfilePageState extends State<UserProfilePage>
                                               BorderRadius.circular(22.h),
                                           color: SchedulerBinding
                                                       .instance
-                                                      ?.window
+                                                      .window
                                                       .platformBrightness !=
                                                   Brightness.dark
                                               ? Colors.white
@@ -106,7 +106,7 @@ class _UserProfilePageState extends State<UserProfilePage>
                                                   fontWeight: FontWeight.bold,
                                                   color: SchedulerBinding
                                                               .instance
-                                                              ?.window
+                                                              .window
                                                               .platformBrightness ==
                                                           Brightness.dark
                                                       ? Colors.white
@@ -175,7 +175,7 @@ class _UserProfilePageState extends State<UserProfilePage>
                                               fontWeight: FontWeight.bold,
                                               color: SchedulerBinding
                                                           .instance
-                                                          ?.window
+                                                          .window
                                                           .platformBrightness ==
                                                       Brightness.dark
                                                   ? Colors.white
@@ -196,7 +196,7 @@ class _UserProfilePageState extends State<UserProfilePage>
                                               decoration: BoxDecoration(
                                                 color: SchedulerBinding
                                                             .instance
-                                                            ?.window
+                                                            .window
                                                             .platformBrightness ==
                                                         Brightness.dark
                                                     ? Colors.black38
@@ -280,7 +280,7 @@ class _UserProfilePageState extends State<UserProfilePage>
                                           fontWeight: FontWeight.bold,
                                           color: SchedulerBinding
                                                       .instance
-                                                      ?.window
+                                                      .window
                                                       .platformBrightness ==
                                                   Brightness.dark
                                               ? Colors.white
@@ -357,7 +357,7 @@ class _UserProfilePageState extends State<UserProfilePage>
                                                                       borderRadius:
                                                                           BorderRadius.circular(
                                                                               15.0.r),
-                                                                      color: SchedulerBinding.instance?.window.platformBrightness ==
+                                                                      color: SchedulerBinding.instance.window.platformBrightness ==
                                                                               Brightness
                                                                                   .dark
                                                                           ? Colors
@@ -421,7 +421,7 @@ class _UserProfilePageState extends State<UserProfilePage>
                                                                               14.sp,
                                                                           fontWeight:
                                                                               FontWeight.bold,
-                                                                          color: SchedulerBinding.instance?.window.platformBrightness == Brightness.dark
+                                                                          color: SchedulerBinding.instance.window.platformBrightness == Brightness.dark
                                                                               ? Colors.white
                                                                               : Colors.black,
                                                                         ),
@@ -448,7 +448,7 @@ class _UserProfilePageState extends State<UserProfilePage>
                                                                       borderRadius:
                                                                           BorderRadius.circular(
                                                                               15.0.r),
-                                                                      color: SchedulerBinding.instance?.window.platformBrightness ==
+                                                                      color: SchedulerBinding.instance.window.platformBrightness ==
                                                                               Brightness
                                                                                   .dark
                                                                           ? Colors
@@ -512,7 +512,7 @@ class _UserProfilePageState extends State<UserProfilePage>
                                                                               14.sp,
                                                                           fontWeight:
                                                                               FontWeight.bold,
-                                                                          color: SchedulerBinding.instance?.window.platformBrightness == Brightness.dark
+                                                                          color: SchedulerBinding.instance.window.platformBrightness == Brightness.dark
                                                                               ? Colors.white
                                                                               : Colors.black,
                                                                         ),
@@ -539,7 +539,7 @@ class _UserProfilePageState extends State<UserProfilePage>
                                                                       borderRadius:
                                                                           BorderRadius.circular(
                                                                               15.0.r),
-                                                                      color: SchedulerBinding.instance?.window.platformBrightness ==
+                                                                      color: SchedulerBinding.instance.window.platformBrightness ==
                                                                               Brightness
                                                                                   .dark
                                                                           ? Colors
@@ -605,7 +605,7 @@ class _UserProfilePageState extends State<UserProfilePage>
                                                                               14.sp,
                                                                           fontWeight:
                                                                               FontWeight.bold,
-                                                                          color: SchedulerBinding.instance?.window.platformBrightness == Brightness.dark
+                                                                          color: SchedulerBinding.instance.window.platformBrightness == Brightness.dark
                                                                               ? Colors.white
                                                                               : Colors.black,
                                                                         ),
@@ -651,7 +651,7 @@ class _UserProfilePageState extends State<UserProfilePage>
                                                                               style: TextStyle(
                                                                                 fontSize: 16.sp,
                                                                                 fontWeight: FontWeight.w500,
-                                                                                color: SchedulerBinding.instance?.window.platformBrightness == Brightness.dark ? Colors.white : Colors.black,
+                                                                                color: SchedulerBinding.instance.window.platformBrightness == Brightness.dark ? Colors.white : Colors.black,
                                                                               ),
                                                                             ),
                                                                           ),
@@ -752,7 +752,7 @@ class _UserProfilePageState extends State<UserProfilePage>
                                             child: ApplicationWidget(
                                               backgroudColor: SchedulerBinding
                                                           .instance
-                                                          ?.window
+                                                          .window
                                                           .platformBrightness ==
                                                       Brightness.dark
                                                   ? Colors.grey.shade800
@@ -867,7 +867,7 @@ class ApplicationWidget extends StatelessWidget {
             text: title,
             size: 20.sp,
             fontWeight: FontWeight.bold,
-            color: SchedulerBinding.instance?.window.platformBrightness ==
+            color: SchedulerBinding.instance.window.platformBrightness ==
                     Brightness.dark
                 ? Colors.white
                 : Colors.black,
@@ -896,7 +896,7 @@ class StatsColumn extends StatelessWidget {
           text: title ?? '',
           size: 18.sp,
           fontWeight: FontWeight.bold,
-          color: SchedulerBinding.instance?.window.platformBrightness ==
+          color: SchedulerBinding.instance.window.platformBrightness ==
                   Brightness.dark
               ? Colors.white
               : Colors.black,

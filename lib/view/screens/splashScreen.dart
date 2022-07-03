@@ -61,7 +61,7 @@ class _splashScreenState extends State<splashScreen> {
                     scale: value,
                     child: Center(
                       child: Image.asset(
-                        SchedulerBinding.instance?.window.platformBrightness ==
+                        SchedulerBinding.instance.window.platformBrightness ==
                                 Brightness.dark
                             ? 'assets/images/logo_dark.png'
                             : 'assets/images/logo.png',

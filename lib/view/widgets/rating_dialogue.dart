@@ -37,7 +37,7 @@ rating_dialogue(var context, var appId, String? image) {
                                 Text(
                                   "Rating",
                                   style: TextStyle(
-                                      color: SchedulerBinding.instance?.window
+                                      color: SchedulerBinding.instance.window
                                                   .platformBrightness ==
                                               Brightness.dark
                                           ? Colors.white
@@ -81,7 +81,7 @@ rating_dialogue(var context, var appId, String? image) {
                                 Text(
                                   "Reviews",
                                   style: TextStyle(
-                                      color: SchedulerBinding.instance?.window
+                                      color: SchedulerBinding.instance.window
                                                   .platformBrightness ==
                                               Brightness.dark
                                           ? Colors.white
@@ -169,7 +169,7 @@ rating_dialogue(var context, var appId, String? image) {
                         width: double.infinity,
                         decoration: BoxDecoration(
                           color: SchedulerBinding
-                                      .instance?.window.platformBrightness !=
+                                      .instance.window.platformBrightness !=
                                   Brightness.dark
                               ? Colors.white
                               : Colors.grey.shade800,

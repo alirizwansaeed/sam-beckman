@@ -78,7 +78,7 @@ class _FavouritesPageBodyState extends State<FavouritesPageBody> {
                         fontWeight: FontWeight.w600,
                         fontSize: ScreenUtil().setSp(28),
                         color: SchedulerBinding
-                                    .instance?.window.platformBrightness ==
+                                    .instance.window.platformBrightness ==
                                 Brightness.dark
                             ? Colors.white
                             : Colors.black,
@@ -99,7 +99,7 @@ class _FavouritesPageBodyState extends State<FavouritesPageBody> {
                         fontWeight: FontWeight.w600,
                         fontSize: ScreenUtil().setSp(28),
                         color: SchedulerBinding
-                                    .instance?.window.platformBrightness ==
+                                    .instance.window.platformBrightness ==
                                 Brightness.dark
                             ? Colors.white
                             : Colors.black,
@@ -183,7 +183,7 @@ class _FavouritesPageBodyState extends State<FavouritesPageBody> {
                     size: ScreenUtil().setSp(20),
                     fontWeight: FontWeight.w700,
                     color:
-                        SchedulerBinding.instance?.window.platformBrightness ==
+                        SchedulerBinding.instance.window.platformBrightness ==
                                 Brightness.dark
                             ? Colors.white
                             : Colors.black,
@@ -330,7 +330,7 @@ class AppContainer extends StatelessWidget {
           boxShadow: [
             BoxShadow(color: Colors.black12, spreadRadius: 1, blurRadius: 1)
           ],
-          color: SchedulerBinding.instance?.window.platformBrightness ==
+          color: SchedulerBinding.instance.window.platformBrightness ==
                   Brightness.dark
               ? Colors.grey.shade800
               : backgroundColor,
@@ -354,7 +354,7 @@ class AppContainer extends StatelessWidget {
                           text: applicationTitle ?? '',
                           size: 18.sp,
                           color: SchedulerBinding
-                                      .instance?.window.platformBrightness ==
+                                      .instance.window.platformBrightness ==
                                   Brightness.dark
                               ? Colors.white
                               : Colors.black,
