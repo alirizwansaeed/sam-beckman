@@ -26,51 +26,48 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
   Widget build(BuildContext context) {
     brightness = SchedulerBinding.instance.window.platformBrightness;
     isDarkMode = brightness == Brightness.dark;
-    return ScreenUtilInit(
-      designSize: const Size(360, 812),
-      builder: () => SafeArea(
-        child: Scaffold(
-          body: IntroductionScreen(
-            globalBackgroundColor: isDarkMode! ? Colors.black12 : Colors.white,
-            pages: [
-              _pageViewModel(context,
-                  title1: 'Explore. ',
-                  title2: 'Discover. ',
-                  body:
-                      'Browse new and exciting applications added to the app every single week.',
-                  gifPath: 'gif1'),
-              _pageViewModel(context,
-                  gifPath: 'gif2',
-                  title1: 'Watch. ',
-                  title2: 'Learn.',
-                  body:
-                      "Like an application you've discovered? Watch the video is featured in from the Sam Beckman Youtube Channel."),
-              _pageViewModel(context,
-                  gifPath: 'gif3',
-                  title1: 'Curate. ',
-                  title2: 'Rate.',
-                  body:
-                      'Create your very own lists of applications. Provide your own ratings and reviews of each app!'),
-            ],
-            showNextButton: false,
-            showBackButton: false,
-            showDoneButton: true,
-            showSkipButton: false,
-            done: Text(
-              'Next',
-              style: TextStyle(
-                  fontSize: 14.sp,
-                  color: Color.fromARGB(255, 254, 192, 1),
-                  letterSpacing: 1.5,
-                  fontWeight: FontWeight.bold),
-            ),
-            onDone: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (_) => const Login()),
-              );
-            },
+    return SafeArea(
+      child: Scaffold(
+        body: IntroductionScreen(
+          globalBackgroundColor: isDarkMode! ? Colors.black12 : Colors.white,
+          pages: [
+            _pageViewModel(context,
+                title1: 'Explore. ',
+                title2: 'Discover. ',
+                body:
+                    'Browse new and exciting applications added to the app every single week.',
+                gifPath: 'gif1'),
+            _pageViewModel(context,
+                gifPath: 'gif2',
+                title1: 'Watch. ',
+                title2: 'Learn.',
+                body:
+                    "Like an application you've discovered? Watch the video is featured in from the Sam Beckman Youtube Channel."),
+            _pageViewModel(context,
+                gifPath: 'gif3',
+                title1: 'Curate. ',
+                title2: 'Rate.',
+                body:
+                    'Create your very own lists of applications. Provide your own ratings and reviews of each app!'),
+          ],
+          showNextButton: false,
+          showBackButton: false,
+          showDoneButton: true,
+          showSkipButton: false,
+          done: Text(
+            'Next',
+            style: TextStyle(
+                fontSize: 14.sp,
+                color: Color.fromARGB(255, 254, 192, 1),
+                letterSpacing: 1.5,
+                fontWeight: FontWeight.bold),
           ),
+          onDone: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const Login()),
+            );
+          },
         ),
       ),
     );

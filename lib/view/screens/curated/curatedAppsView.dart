@@ -76,228 +76,212 @@ class _CuratedAppsViewState extends State<CuratedAppsView>
     int i = 0;
 
     return SafeArea(
-        child: ScreenUtilInit(
-            designSize: const Size(360, 800),
-            builder: () => WillPopScope(
-                onWillPop: _onBackPressed,
-                child: Scaffold(
-                    floatingActionButtonLocation:
-                        FloatingActionButtonLocation.centerFloat,
-                    floatingActionButton: Container(
-                      decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                            color: Theme.of(context)
-                                .primaryColor
-                                .withOpacity(0.35),
-                            spreadRadius: 1,
-                            blurRadius: 15,
-                            offset: Offset(0, 8), // changes position of shadow
-                          ),
-                        ],
+        child: WillPopScope(
+            onWillPop: _onBackPressed,
+            child: Scaffold(
+                floatingActionButtonLocation:
+                    FloatingActionButtonLocation.centerFloat,
+                floatingActionButton: Container(
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Theme.of(context).primaryColor.withOpacity(0.35),
+                        spreadRadius: 1,
+                        blurRadius: 15,
+                        offset: Offset(0, 8), // changes position of shadow
                       ),
-                      width: 150.w,
-                      child: TextButton(
-                        style: TextButton.styleFrom(
-                          padding: EdgeInsets.symmetric(vertical: 14.h),
-                          backgroundColor: Theme.of(context).primaryColor,
-                          elevation: 4,
-                          shadowColor: Theme.of(context).primaryColor,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20.r),
-                          ),
-                        ),
-                        onPressed: getDialog,
-                        child: Text(
-                          'Add New',
-                          style: TextStyle(
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w500,
-                            color: SchedulerBinding
-                                        .instance.window.platformBrightness ==
-                                    Brightness.dark
-                                ? Colors.white
-                                : Colors.black,
-                          ),
-                        ),
+                    ],
+                  ),
+                  width: 150.w,
+                  child: TextButton(
+                    style: TextButton.styleFrom(
+                      padding: EdgeInsets.symmetric(vertical: 14.h),
+                      backgroundColor: Theme.of(context).primaryColor,
+                      elevation: 4,
+                      shadowColor: Theme.of(context).primaryColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.r),
                       ),
                     ),
-                    bottomNavigationBar: CustomBottomNavigationBar(1),
-                    body: FutureBuilder(
-                        future: userdata(),
-                        builder: (context, snapshot) {
-                          return Column(
-                            children: [
-                              Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(5, 20, 10, 20),
-                                child: RichText(
-                                  text: TextSpan(
-                                    children: [
-                                      TextSpan(
-                                        text: 'Your Application ',
-                                        style: TextStyle(
-                                          fontFamily: 'Satoshi',
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: ScreenUtil().setSp(28),
-                                          color: SchedulerBinding
-                                                      .instance
-                                                      .window
-                                                      .platformBrightness ==
-                                                  Brightness.dark
-                                              ? Colors.white
-                                              : Colors.black,
-                                        ),
-                                      ),
-                                      TextSpan(
-                                        text: 'Shelves ',
-                                        style: TextStyle(
-                                            fontFamily: 'Satoshi',
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: ScreenUtil().setSp(28),
-                                            color:
-                                                Theme.of(context).primaryColor),
-                                      ),
-                                    ],
+                    onPressed: getDialog,
+                    child: Text(
+                      'Add New',
+                      style: TextStyle(
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w500,
+                        color: SchedulerBinding
+                                    .instance.window.platformBrightness ==
+                                Brightness.dark
+                            ? Colors.white
+                            : Colors.black,
+                      ),
+                    ),
+                  ),
+                ),
+                bottomNavigationBar: CustomBottomNavigationBar(1),
+                body: FutureBuilder(
+                    future: userdata(),
+                    builder: (context, snapshot) {
+                      return Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(5, 20, 10, 20),
+                            child: RichText(
+                              text: TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text: 'Your Application ',
+                                    style: TextStyle(
+                                      fontFamily: 'Satoshi',
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: ScreenUtil().setSp(28),
+                                      color: SchedulerBinding.instance.window
+                                                  .platformBrightness ==
+                                              Brightness.dark
+                                          ? Colors.white
+                                          : Colors.black,
+                                    ),
                                   ),
-                                ),
+                                  TextSpan(
+                                    text: 'Shelves ',
+                                    style: TextStyle(
+                                        fontFamily: 'Satoshi',
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: ScreenUtil().setSp(28),
+                                        color: Theme.of(context).primaryColor),
+                                  ),
+                                ],
                               ),
-                              StreamBuilder<QuerySnapshot>(
-                                  stream: FirebaseFirestore.instance
-                                      .collection('curated')
-                                      .doc(currentUser!.uid)
-                                      .collection('curatedApps')
-                                      .snapshots(),
-                                  builder: (context, snapshot) {
-                                    if (snapshot.hasData) {
-                                      return ListView(
-                                          physics: BouncingScrollPhysics(),
-                                          shrinkWrap: true,
-                                          children: snapshot.data!.docs
-                                              .map((document) {
-                                            if (snapshot.hasData) {
-                                              i++;
-                                              return Column(
-                                                children: [
-                                                  GestureDetector(
-                                                    onTap: () async {
-                                                      var appsList =
-                                                          await getCuratedApps(
-                                                              document.id);
-                                                      Navigator.pushReplacement(
-                                                          context,
-                                                          MaterialPageRoute(
-                                                              builder: (_) =>
-                                                                  PostCuratedView(
-                                                                    appsList:
-                                                                        appsList,
-                                                                    docId:
-                                                                        document
-                                                                            .id,
-                                                                  )));
-                                                    },
-                                                    child: Container(
-                                                      width: 300.w,
-                                                      height: 100.h,
-                                                      decoration: BoxDecoration(
-                                                          color: Color(int.parse(
-                                                                  '0xff${document['color']}'))
-                                                              .withOpacity(0.4),
-                                                          borderRadius:
-                                                              BorderRadius.all(
-                                                                  Radius
-                                                                      .circular(
-                                                                          10))),
-                                                      child: Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .start,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .center,
-                                                        children: [
-                                                          SizedBox(
-                                                            width: 20,
-                                                          ),
-                                                          SizedBox(
-                                                              height: 50,
-                                                              width: 50,
-                                                              child: Image.asset(
-                                                                  'assets/icons/books.png')),
-                                                          Padding(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                        .fromLTRB(
-                                                                    20,
-                                                                    0,
-                                                                    0,
-                                                                    0),
-                                                            child: CustomText(
-                                                                text: document[
-                                                                    'shelfName'],
-                                                                size: 18.sp,
-                                                                color: SchedulerBinding
-                                                                            .instance
-                                                                            .window
-                                                                            .platformBrightness ==
-                                                                        Brightness
-                                                                            .dark
-                                                                    ? Colors
-                                                                        .white
-                                                                    : Colors
-                                                                        .black,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold),
-                                                          ),
-                                                        ],
+                            ),
+                          ),
+                          StreamBuilder<QuerySnapshot>(
+                              stream: FirebaseFirestore.instance
+                                  .collection('curated')
+                                  .doc(currentUser!.uid)
+                                  .collection('curatedApps')
+                                  .snapshots(),
+                              builder: (context, snapshot) {
+                                if (snapshot.hasData) {
+                                  return ListView(
+                                      physics: BouncingScrollPhysics(),
+                                      shrinkWrap: true,
+                                      children:
+                                          snapshot.data!.docs.map((document) {
+                                        if (snapshot.hasData) {
+                                          i++;
+                                          return Column(
+                                            children: [
+                                              GestureDetector(
+                                                onTap: () async {
+                                                  var appsList =
+                                                      await getCuratedApps(
+                                                          document.id);
+                                                  Navigator.pushReplacement(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (_) =>
+                                                              PostCuratedView(
+                                                                appsList:
+                                                                    appsList,
+                                                                docId:
+                                                                    document.id,
+                                                              )));
+                                                },
+                                                child: Container(
+                                                  width: 300.w,
+                                                  height: 100.h,
+                                                  decoration: BoxDecoration(
+                                                      color: Color(int.parse(
+                                                              '0xff${document['color']}'))
+                                                          .withOpacity(0.4),
+                                                      borderRadius:
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  10))),
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      SizedBox(
+                                                        width: 20,
                                                       ),
-                                                    ),
+                                                      SizedBox(
+                                                          height: 50,
+                                                          width: 50,
+                                                          child: Image.asset(
+                                                              'assets/icons/books.png')),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .fromLTRB(
+                                                                20, 0, 0, 0),
+                                                        child: CustomText(
+                                                            text: document[
+                                                                'shelfName'],
+                                                            size: 18.sp,
+                                                            color: SchedulerBinding
+                                                                        .instance
+                                                                        .window
+                                                                        .platformBrightness ==
+                                                                    Brightness
+                                                                        .dark
+                                                                ? Colors.white
+                                                                : Colors.black,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                      ),
+                                                    ],
                                                   ),
-                                                  SizedBox(
-                                                    height: 20.h,
-                                                  )
-                                                ],
-                                              );
-                                            } else
-                                              return Column(
-                                                children: [
-                                                  SizedBox(
-                                                    height: 60.h,
-                                                  ),
-                                                  Image.asset(
-                                                    'assets/images/smartphone.png',
-                                                    width: 200.w,
-                                                    height: 200.h,
-                                                  ),
-                                                  SizedBox(
-                                                    height: 35.h,
-                                                  ),
-                                                  CustomText(
-                                                    text:
-                                                        'Curate your own unique list of applications',
-                                                    size: 14.sp,
-                                                    color: SchedulerBinding
-                                                                .instance
-                                                                .window
-                                                                .platformBrightness ==
-                                                            Brightness.dark
-                                                        ? Colors.white
-                                                        : Colors.black,
-                                                    fontWeight: FontWeight.w400,
-                                                  ),
-                                                  SizedBox(
-                                                    height: 70.h,
-                                                  ),
-                                                ],
-                                              );
-                                          }).toList());
-                                    } else
-                                      return Container();
-                                  }),
-                            ],
-                          );
-                        })))));
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                height: 20.h,
+                                              )
+                                            ],
+                                          );
+                                        } else
+                                          return Column(
+                                            children: [
+                                              SizedBox(
+                                                height: 60.h,
+                                              ),
+                                              Image.asset(
+                                                'assets/images/smartphone.png',
+                                                width: 200.w,
+                                                height: 200.h,
+                                              ),
+                                              SizedBox(
+                                                height: 35.h,
+                                              ),
+                                              CustomText(
+                                                text:
+                                                    'Curate your own unique list of applications',
+                                                size: 14.sp,
+                                                color: SchedulerBinding
+                                                            .instance
+                                                            .window
+                                                            .platformBrightness ==
+                                                        Brightness.dark
+                                                    ? Colors.white
+                                                    : Colors.black,
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                              SizedBox(
+                                                height: 70.h,
+                                              ),
+                                            ],
+                                          );
+                                      }).toList());
+                                } else
+                                  return Container();
+                              }),
+                        ],
+                      );
+                    }))));
   }
 
   getCurated() async {

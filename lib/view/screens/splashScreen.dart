@@ -49,27 +49,25 @@ class _splashScreenState extends State<splashScreen> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIOverlays([]);
-    return ScreenUtilInit(
-        designSize: Size(360, 812),
-        builder: () => Scaffold(
-              body: Container(
-                child: TweenAnimationBuilder(
-                  tween: Tween<double>(begin: .5, end: 1.5),
-                  duration: const Duration(seconds: 1),
-                  curve: Curves.bounceOut,
-                  builder: (context, double value, child) => Transform.scale(
-                    scale: value,
-                    child: Center(
-                      child: Image.asset(
-                        SchedulerBinding.instance.window.platformBrightness ==
-                                Brightness.dark
-                            ? 'assets/images/logo_dark.png'
-                            : 'assets/images/logo.png',
-                      ),
-                    ),
-                  ),
-                ),
+    return Scaffold(
+      body: Container(
+        child: TweenAnimationBuilder(
+          tween: Tween<double>(begin: .5, end: 1.5),
+          duration: const Duration(seconds: 1),
+          curve: Curves.bounceOut,
+          builder: (context, double value, child) => Transform.scale(
+            scale: value,
+            child: Center(
+              child: Image.asset(
+                SchedulerBinding.instance.window.platformBrightness ==
+                        Brightness.dark
+                    ? 'assets/images/logo_dark.png'
+                    : 'assets/images/logo.png',
               ),
-            ));
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }

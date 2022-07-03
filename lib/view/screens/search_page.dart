@@ -23,13 +23,10 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: ScreenUtilInit(
-        designSize: const Size(360, 800),
-        builder: () => Scaffold(
-          bottomNavigationBar: CustomBottomNavigationBar(2),
-          body: SearchPageBody(
-            filterValue: widget.filterValue,
-          ),
+      child: Scaffold(
+        bottomNavigationBar: CustomBottomNavigationBar(2),
+        body: SearchPageBody(
+          filterValue: widget.filterValue,
         ),
       ),
     );

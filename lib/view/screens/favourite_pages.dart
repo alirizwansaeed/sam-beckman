@@ -26,12 +26,9 @@ class _FavouritesPageState extends State<FavouritesPage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: ScreenUtilInit(
-      designSize: const Size(360, 812),
-      builder: () => Scaffold(
-        bottomNavigationBar: CustomBottomNavigationBar(1),
-        body: FavouritesPageBody(),
-      ),
+        child: Scaffold(
+      bottomNavigationBar: CustomBottomNavigationBar(1),
+      body: FavouritesPageBody(),
     ));
   }
 }

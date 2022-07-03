@@ -25,12 +25,9 @@ class Signup extends StatefulWidget {
 class _SignupState extends State<Signup> {
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(360, 800),
-      builder: () => Scaffold(
-        resizeToAvoidBottomInset: true,
-        body: SignupBody(),
-      ),
+    return Scaffold(
+      resizeToAvoidBottomInset: true,
+      body: SignupBody(),
     );
   }
 }

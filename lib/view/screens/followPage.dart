@@ -28,11 +28,8 @@ class _UserFollowPageState extends State<UserFollowPage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: ScreenUtilInit(
-        designSize: const Size(360, 812),
-        builder: () => Scaffold(
-          body: UserFollowProfilePageBody(userId: widget.userId),
-        ),
+      child: Scaffold(
+        body: UserFollowProfilePageBody(userId: widget.userId),
       ),
     );
   }

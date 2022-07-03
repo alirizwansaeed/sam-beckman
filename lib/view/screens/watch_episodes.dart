@@ -85,22 +85,19 @@ class _watch_episodesState extends State<watch_episodes> {
   Widget build(BuildContext context) {
     print("Vid Thereeeeeeeee" + widget.video.toString());
     return SafeArea(
-      child: ScreenUtilInit(
-        designSize: const Size(360, 800),
-        builder: () => Scaffold(
-            body: watch_episodesBody(
-          description: description,
-          appId: appId,
-          applicationTitle: applicationTitle,
-          category: category,
-          iconName: iconName,
-          ratting: ratting,
-          developer: developer,
-          link: link,
-          searchPage: searchPage,
-          video: video,
-        )),
-      ),
+      child: Scaffold(
+          body: watch_episodesBody(
+        description: description,
+        appId: appId,
+        applicationTitle: applicationTitle,
+        category: category,
+        iconName: iconName,
+        ratting: ratting,
+        developer: developer,
+        link: link,
+        searchPage: searchPage,
+        video: video,
+      )),
     );
   }
 }

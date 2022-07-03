@@ -51,18 +51,14 @@ class _ShowCategoriesState extends State<ShowCategories>
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: ScreenUtilInit(
-        designSize: const Size(360, 800),
-        builder: () => WillPopScope(
-          onWillPop: _onBackPressed,
-          child: Scaffold(
-              bottomNavigationBar: SlideTransition(
-                  position: offsetAnimation,
-                  child: CustomBottomNavigationBar(1)),
-              body: CategoriesBody(
-                category: widget.categoryValue,
-              )),
-        ),
+      child: WillPopScope(
+        onWillPop: _onBackPressed,
+        child: Scaffold(
+            bottomNavigationBar: SlideTransition(
+                position: offsetAnimation, child: CustomBottomNavigationBar(1)),
+            body: CategoriesBody(
+              category: widget.categoryValue,
+            )),
       ),
     );
   }
@@ -78,203 +74,190 @@ class CategoriesBody extends StatelessWidget {
   Widget build(BuildContext context) {
     fav_list = [];
 
-    return ScreenUtilInit(
-        designSize: const Size(360, 800),
-        builder: () => FutureBuilder<List<String>>(
-            future: getFavouriteApps(),
-            builder: (context, snapshots) {
-              if (snapshots.hasData) {
-                fav_list = snapshots.data;
-                return Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: RichText(
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
-                              text: '${category}',
-                              style: TextStyle(
-                                  fontSize: ScreenUtil().setSp(28),
-                                  fontWeight: FontWeight.w500,
-                                  color: Theme.of(context).primaryColor),
-                            ),
-                            TextSpan(
-                              text: ' Applications',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: ScreenUtil().setSp(28),
-                                color: SchedulerBinding.instance.window
-                                            .platformBrightness ==
-                                        Brightness.dark
-                                    ? Colors.white
-                                    : Colors.black,
-                              ),
-                            ),
-                          ],
+    return FutureBuilder<List<String>>(
+        future: getFavouriteApps(),
+        builder: (context, snapshots) {
+          if (snapshots.hasData) {
+            fav_list = snapshots.data;
+            return Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: RichText(
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                          text: '${category}',
+                          style: TextStyle(
+                              fontSize: ScreenUtil().setSp(28),
+                              fontWeight: FontWeight.w500,
+                              color: Theme.of(context).primaryColor),
                         ),
-                      ),
+                        TextSpan(
+                          text: ' Applications',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: ScreenUtil().setSp(28),
+                            color: SchedulerBinding
+                                        .instance.window.platformBrightness ==
+                                    Brightness.dark
+                                ? Colors.white
+                                : Colors.black,
+                          ),
+                        ),
+                      ],
                     ),
-                    StreamBuilder<QuerySnapshot>(
-                        stream: FirebaseFirestore.instance
-                            .collection('apps')
-                            .where('category', isEqualTo: category)
-                            .snapshots(),
-                        builder: (context, snapshot) {
-                          if (snapshot.hasData) {
-                            return Container(
-                              width: double.infinity,
-                              height: 160.h,
-                              child: ListView(
-                                  physics: BouncingScrollPhysics(),
-                                  scrollDirection: Axis.horizontal,
-                                  shrinkWrap: true,
-                                  children: snapshot.data!.docs.map((document) {
-                                    if (snapshot.hasData) {
-                                      var backColor =
-                                          int.parse("0xff${document['color']}");
-                                      var favColor = Colors.grey;
+                  ),
+                ),
+                StreamBuilder<QuerySnapshot>(
+                    stream: FirebaseFirestore.instance
+                        .collection('apps')
+                        .where('category', isEqualTo: category)
+                        .snapshots(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        return Container(
+                          width: double.infinity,
+                          height: 160.h,
+                          child: ListView(
+                              physics: BouncingScrollPhysics(),
+                              scrollDirection: Axis.horizontal,
+                              shrinkWrap: true,
+                              children: snapshot.data!.docs.map((document) {
+                                if (snapshot.hasData) {
+                                  var backColor =
+                                      int.parse("0xff${document['color']}");
+                                  var favColor = Colors.grey;
 
-                                      if (snapshots.data!
-                                          .contains(document['title'])) {
-                                        favColor = Colors.red;
-                                        snapshots.data!
-                                            .remove(document['title']);
-                                      }
-                                      return GestureDetector(
-                                        onTap: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (_) =>
-                                                      AppsDetailsPage(
-                                                        favColor: favColor,
-                                                        color:
-                                                            document['color'],
-                                                        description: document[
-                                                            'description'],
-                                                        ratting:
-                                                            document['rating']
-                                                                .toString(),
-                                                        developer: document[
-                                                            'developer'],
-                                                        link: document[
-                                                            'playStoreLink'],
-                                                        appId: document.id,
-                                                        applicationTitle:
-                                                            document['title'],
-                                                        category: document[
-                                                            'category'],
-                                                        iconName:
-                                                            document['icon'],
-                                                      )));
-                                        },
-                                        child: AppContainer(
-                                          backgroundColor: Color(backColor),
-                                          color: document['color'],
-                                          applicationTitle: document['title'],
-                                          category: document['category'],
-                                          iconName: document['icon'],
-                                          appId: document.id,
-                                          description: document['description'],
-                                          ratting:
-                                              document['rating'].toString(),
-                                          developer: document['developer'],
-                                          link: document['playStoreLink'],
-                                          favColor: favColor,
-                                        ),
-                                      );
-                                    } else
-                                      return Container();
-                                  }).toList()),
-                            );
-                          } else
-                            return Container();
-                        }),
-                    SizedBox(height: 30.h),
-                    StreamBuilder<QuerySnapshot>(
-                        stream: FirebaseFirestore.instance
-                            .collection('apps')
-                            .where('category', isEqualTo: category)
-                            .snapshots(),
-                        builder: (context, snapshot) {
-                          if (snapshot.hasData) {
-                            return Expanded(
-                              child: ListView(
-                                  physics: BouncingScrollPhysics(),
-                                  shrinkWrap: true,
-                                  children: snapshot.data!.docs.map((document) {
-                                    if (snapshot.hasData) {
-                                      var backColor =
-                                          int.parse("0xff${document['color']}");
+                                  if (snapshots.data!
+                                      .contains(document['title'])) {
+                                    favColor = Colors.red;
+                                    snapshots.data!.remove(document['title']);
+                                  }
+                                  return GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (_) => AppsDetailsPage(
+                                                    favColor: favColor,
+                                                    color: document['color'],
+                                                    description:
+                                                        document['description'],
+                                                    ratting: document['rating']
+                                                        .toString(),
+                                                    developer:
+                                                        document['developer'],
+                                                    link: document[
+                                                        'playStoreLink'],
+                                                    appId: document.id,
+                                                    applicationTitle:
+                                                        document['title'],
+                                                    category:
+                                                        document['category'],
+                                                    iconName: document['icon'],
+                                                  )));
+                                    },
+                                    child: AppContainer(
+                                      backgroundColor: Color(backColor),
+                                      color: document['color'],
+                                      applicationTitle: document['title'],
+                                      category: document['category'],
+                                      iconName: document['icon'],
+                                      appId: document.id,
+                                      description: document['description'],
+                                      ratting: document['rating'].toString(),
+                                      developer: document['developer'],
+                                      link: document['playStoreLink'],
+                                      favColor: favColor,
+                                    ),
+                                  );
+                                } else
+                                  return Container();
+                              }).toList()),
+                        );
+                      } else
+                        return Container();
+                    }),
+                SizedBox(height: 30.h),
+                StreamBuilder<QuerySnapshot>(
+                    stream: FirebaseFirestore.instance
+                        .collection('apps')
+                        .where('category', isEqualTo: category)
+                        .snapshots(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        return Expanded(
+                          child: ListView(
+                              physics: BouncingScrollPhysics(),
+                              shrinkWrap: true,
+                              children: snapshot.data!.docs.map((document) {
+                                if (snapshot.hasData) {
+                                  var backColor =
+                                      int.parse("0xff${document['color']}");
 
-                                      var favColor = Colors.grey;
+                                  var favColor = Colors.grey;
 
-                                      if (fav_list!
-                                          .contains(document['title'])) {
-                                        favColor = Colors.red;
-                                        fav_list!.remove(document['title']);
-                                      }
+                                  if (fav_list!.contains(document['title'])) {
+                                    favColor = Colors.red;
+                                    fav_list!.remove(document['title']);
+                                  }
 
-                                      return Padding(
-                                        padding: const EdgeInsets.fromLTRB(
-                                            10, 0, 10, 0),
-                                        child: GestureDetector(
-                                          onTap: () {
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (_) =>
-                                                        AppsDetailsPage(
-                                                          favColor: favColor,
-                                                          color:
-                                                              document['color'],
-                                                          description: document[
-                                                              'description'],
-                                                          ratting:
-                                                              document['rating']
-                                                                  .toString(),
-                                                          developer: document[
-                                                              'developer'],
-                                                          link: document[
-                                                              'playStoreLink'],
-                                                          appId: document.id,
-                                                          applicationTitle:
-                                                              document['title'],
-                                                          category: document[
-                                                              'category'],
-                                                          iconName:
-                                                              document['icon'],
-                                                        )));
-                                          },
-                                          child: AppDisplayBox(
-                                            backgroundColor: Color(backColor),
-                                            color: document['color'],
-                                            applicationTitle: document['title'],
-                                            category: document['category'],
-                                            iconName: document['icon'],
-                                            appId: document.id,
-                                            description:
-                                                document['description'],
-                                            ratting:
-                                                document['rating'].toString(),
-                                            developer: document['developer'],
-                                            link: document['playStoreLink'],
-                                          ),
-                                        ),
-                                      );
-                                    } else
-                                      return Container();
-                                  }).toList()),
-                            );
-                          } else
-                            return Container();
-                        }),
-                  ],
-                );
-              } else
-                return Container();
-            }));
+                                  return Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (_) => AppsDetailsPage(
+                                                      favColor: favColor,
+                                                      color: document['color'],
+                                                      description: document[
+                                                          'description'],
+                                                      ratting:
+                                                          document['rating']
+                                                              .toString(),
+                                                      developer:
+                                                          document['developer'],
+                                                      link: document[
+                                                          'playStoreLink'],
+                                                      appId: document.id,
+                                                      applicationTitle:
+                                                          document['title'],
+                                                      category:
+                                                          document['category'],
+                                                      iconName:
+                                                          document['icon'],
+                                                    )));
+                                      },
+                                      child: AppDisplayBox(
+                                        backgroundColor: Color(backColor),
+                                        color: document['color'],
+                                        applicationTitle: document['title'],
+                                        category: document['category'],
+                                        iconName: document['icon'],
+                                        appId: document.id,
+                                        description: document['description'],
+                                        ratting: document['rating'].toString(),
+                                        developer: document['developer'],
+                                        link: document['playStoreLink'],
+                                      ),
+                                    ),
+                                  );
+                                } else
+                                  return Container();
+                              }).toList()),
+                        );
+                      } else
+                        return Container();
+                    }),
+              ],
+            );
+          } else
+            return Container();
+        });
   }
 
   Future<List<String>> getFavouriteApps() async {

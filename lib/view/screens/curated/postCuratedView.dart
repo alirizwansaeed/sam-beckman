@@ -52,9 +52,7 @@ class _PostCuratedViewState extends State<PostCuratedView>
     var filterValue = "Filter By";
 
     return SafeArea(
-        child: ScreenUtilInit(
-      designSize: const Size(360, 800),
-      builder: () => WillPopScope(
+      child: WillPopScope(
         onWillPop: _onBackPressed,
         child: Scaffold(
           resizeToAvoidBottomInset: false,
@@ -341,7 +339,7 @@ class _PostCuratedViewState extends State<PostCuratedView>
           ),
         ),
       ),
-    ));
+    );
   }
 
   updateCuratedApps() async {

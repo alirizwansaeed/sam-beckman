@@ -60,9 +60,7 @@ class _AddCuratedAppsState extends State<AddCuratedApps>
     var filterValue = "Filter By";
 
     return SafeArea(
-        child: ScreenUtilInit(
-      designSize: const Size(360, 800),
-      builder: () => WillPopScope(
+      child: WillPopScope(
         onWillPop: _onBackPressed,
         child: Scaffold(
           resizeToAvoidBottomInset: false,
@@ -358,7 +356,7 @@ class _AddCuratedAppsState extends State<AddCuratedApps>
           ),
         ),
       ),
-    ));
+    );
   }
 
   Future<List<String>> getFavouriteApps() async {

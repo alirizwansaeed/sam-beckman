@@ -34,89 +34,85 @@ class _onBoardingState extends State<onBoarding> {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-        designSize: Size(360, 812),
-        builder: () => SafeArea(
-                child: Scaffold(
-                    body: Container(
-              color: SchedulerBinding.instance.window.platformBrightness ==
-                      Brightness.dark
-                  ? Color(0xff303030)
-                  : Colors.white,
-              child: Column(
-                children: [
-                  Container(
-                    color:
-                        SchedulerBinding.instance.window.platformBrightness ==
-                                Brightness.dark
-                            ? Color(0xff303030)
-                            : Colors.white,
-                    height: MediaQuery.of(context).size.height * 0.80,
-                    child: PageView(
-                      onPageChanged: (indexes) {
-                        print(indexes);
-                        setState(() {
-                          index = indexes;
-                        });
-                      },
-                      controller: controller,
-                      children: [firstPage(), seccondPage(), thirdPage()],
-                    ),
+    return SafeArea(
+        child: Scaffold(
+            body: Container(
+      color:
+          SchedulerBinding.instance.window.platformBrightness == Brightness.dark
+              ? Color(0xff303030)
+              : Colors.white,
+      child: Column(
+        children: [
+          Container(
+            color: SchedulerBinding.instance.window.platformBrightness ==
+                    Brightness.dark
+                ? Color(0xff303030)
+                : Colors.white,
+            height: MediaQuery.of(context).size.height * 0.80,
+            child: PageView(
+              onPageChanged: (indexes) {
+                print(indexes);
+                setState(() {
+                  index = indexes;
+                });
+              },
+              controller: controller,
+              children: [firstPage(), seccondPage(), thirdPage()],
+            ),
+          ),
+
+          SizedBox(
+            height: 20.h,
+          ),
+
+          //   Padding(
+          //     padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 20),
+          //     child: Row(
+          //       mainAxisAlignment: MainAxisAlignment.center,
+          //       children: [
+          //         SmoothPageIndicator(
+          //             controller: controller,  // PageController
+          //             count:3,
+          //             // forcing the indicator to use a specific direction
+          //             textDirection: TextDirection.ltr,
+          //             effect:  SwapEffect(type:SwapType.yRotation,dotColor: Colors.grey,activeDotColor:Theme.of(context).primaryColor,dotHeight:15,dotWidth:15),
+          // ),
+
+          //       ],
+          //     ),
+          //   ),
+          InkWell(
+            onTap: () => Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (_) => const Login()),
+            ),
+            child: DelayedDisplay(
+              delay: Duration(milliseconds: 300),
+              slidingBeginOffset: Offset(0, -1),
+              slidingCurve: Curves.bounceOut,
+              child: Container(
+                  height: 45,
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Color(0xfffec12b), width: 2),
+                    borderRadius: BorderRadius.circular(6),
+                    color: Theme.of(context).primaryColor,
                   ),
-
-                  SizedBox(
-                    height: 20.h,
-                  ),
-
-                  //   Padding(
-                  //     padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 20),
-                  //     child: Row(
-                  //       mainAxisAlignment: MainAxisAlignment.center,
-                  //       children: [
-                  //         SmoothPageIndicator(
-                  //             controller: controller,  // PageController
-                  //             count:3,
-                  //             // forcing the indicator to use a specific direction
-                  //             textDirection: TextDirection.ltr,
-                  //             effect:  SwapEffect(type:SwapType.yRotation,dotColor: Colors.grey,activeDotColor:Theme.of(context).primaryColor,dotHeight:15,dotWidth:15),
-                  // ),
-
-                  //       ],
-                  //     ),
-                  //   ),
-                  InkWell(
-                    onTap: () => Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder: (_) => const Login()),
+                  child: Center(
+                    child: Text(
+                      'Start now!',
+                      style: TextStyle(
+                          fontSize: 16.sp,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Satoshi'),
                     ),
-                    child: DelayedDisplay(
-                      delay: Duration(milliseconds: 300),
-                      slidingBeginOffset: Offset(0, -1),
-                      slidingCurve: Curves.bounceOut,
-                      child: Container(
-                          height: 45,
-                          width: MediaQuery.of(context).size.width * 0.8,
-                          decoration: BoxDecoration(
-                            border:
-                                Border.all(color: Color(0xfffec12b), width: 2),
-                            borderRadius: BorderRadius.circular(6),
-                            color: Theme.of(context).primaryColor,
-                          ),
-                          child: Center(
-                            child: Text(
-                              'Start now!',
-                              style: TextStyle(
-                                  fontSize: 16.sp,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: 'Satoshi'),
-                            ),
-                          )),
-                    ),
-                  )
-                ],
-              ),
-            ))));
+                  )),
+            ),
+          )
+        ],
+      ),
+    )));
   }
 }
 

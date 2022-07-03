@@ -24,11 +24,8 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(360, 800),
-      builder: () => Scaffold(
-        body: LoginBody(),
-      ),
+    return Scaffold(
+      body: LoginBody(),
     );
   }
 }

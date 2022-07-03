@@ -24,14 +24,12 @@ class _reviewdAppPageState extends State<reviewdAppPage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: ScreenUtilInit(
-      designSize: const Size(360, 812),
-      builder: () => SafeArea(
+      child: SafeArea(
         child: Scaffold(
           body: ReviewdAppPageBody(),
         ),
       ),
-    ));
+    );
   }
 }
 
