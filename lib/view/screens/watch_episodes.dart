@@ -25,11 +25,15 @@ import 'home_page.dart';
 class watch_episodes extends StatefulWidget {
   watch_episodes(
       {this.ratting,
-        this.description,
-        this.appId,
-        this.category,
-        this.applicationTitle,
-        this.iconName,this.developer,this.link,this.searchpage,this.video});
+      this.description,
+      this.appId,
+      this.category,
+      this.applicationTitle,
+      this.iconName,
+      this.developer,
+      this.link,
+      this.searchpage,
+      this.video});
   final String? appId;
   final String? applicationTitle;
   final String? category;
@@ -48,17 +52,25 @@ class watch_episodes extends StatefulWidget {
       applicationTitle: applicationTitle,
       category: category,
       iconName: iconName,
-      ratting: ratting,developer: developer,link: link,searchPage: searchpage,video: video);
+      ratting: ratting,
+      developer: developer,
+      link: link,
+      searchPage: searchpage,
+      video: video);
 }
 
 class _watch_episodesState extends State<watch_episodes> {
   _watch_episodesState(
       {this.ratting,
-        this.description,
-        this.appId,
-        this.category,
-        this.applicationTitle,
-        this.iconName,this.developer,this.link,this.searchPage,this.video});
+      this.description,
+      this.appId,
+      this.category,
+      this.applicationTitle,
+      this.iconName,
+      this.developer,
+      this.link,
+      this.searchPage,
+      this.video});
   final String? link;
   final String? appId;
   final String? applicationTitle;
@@ -66,24 +78,26 @@ class _watch_episodesState extends State<watch_episodes> {
   final String? iconName;
   final String? description;
   final String? ratting;
-  final String?developer;
+  final String? developer;
   final bool? searchPage;
   final String? video;
   @override
   Widget build(BuildContext context) {
     print("Vid Thereeeeeeeee" + widget.video.toString());
     return SafeArea(
-      child: ScreenUtilInit(
-        designSize: const Size(360, 800),
-        builder: () => Scaffold(
-            body: watch_episodesBody(
-              description: description,
-              appId: appId,
-              applicationTitle: applicationTitle,
-              category: category,
-              iconName: iconName,
-              ratting: ratting,developer: developer,link: link,searchPage: searchPage,video: video,)),
-      ),
+      child: Scaffold(
+          body: watch_episodesBody(
+        description: description,
+        appId: appId,
+        applicationTitle: applicationTitle,
+        category: category,
+        iconName: iconName,
+        ratting: ratting,
+        developer: developer,
+        link: link,
+        searchPage: searchPage,
+        video: video,
+      )),
     );
   }
 }
@@ -91,11 +105,15 @@ class _watch_episodesState extends State<watch_episodes> {
 class watch_episodesBody extends StatefulWidget {
   watch_episodesBody(
       {this.ratting,
-        this.description,
-        this.appId,
-        this.category,
-        this.applicationTitle,
-        this.iconName,this.link,this.developer,this.searchPage,this.video});
+      this.description,
+      this.appId,
+      this.category,
+      this.applicationTitle,
+      this.iconName,
+      this.link,
+      this.developer,
+      this.searchPage,
+      this.video});
   final String? appId;
   final String? applicationTitle;
   final String? category;
@@ -111,8 +129,8 @@ class watch_episodesBody extends StatefulWidget {
 }
 
 class _watch_episodesBodyState extends State<watch_episodesBody> {
-  bool detail=true;
-  YoutubePlayerController ?_controller;
+  bool detail = true;
+  YoutubePlayerController? _controller;
 
   @override
   void initState() {
@@ -126,6 +144,7 @@ class _watch_episodesBodyState extends State<watch_episodesBody> {
       ),
     );
   }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -136,14 +155,14 @@ class _watch_episodesBodyState extends State<watch_episodesBody> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
-            height: MediaQuery.of(context).size.height*0.8,
+            height: MediaQuery.of(context).size.height * 0.8,
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   OutlinedButton(
                     onPressed: () {
-                      searchController controller=new searchController();
+                      searchController controller = new searchController();
                       controller.appList.clear();
                       controller.searchList.clear();
                       controller.Getapps();
@@ -155,15 +174,17 @@ class _watch_episodesBodyState extends State<watch_episodesBody> {
                     },
                     style: OutlinedButton.styleFrom(
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15.0.r),
-                          side: const BorderSide(color: Colors.grey),
-                        )),
+                      borderRadius: BorderRadius.circular(15.0.r),
+                      side: const BorderSide(color: Colors.grey),
+                    )),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Icon(
                           Icons.arrow_back_ios,
-                          color:SchedulerBinding.instance.window.platformBrightness == Brightness.dark
+                          color: SchedulerBinding
+                                      .instance.window.platformBrightness ==
+                                  Brightness.dark
                               ? Colors.white
                               : Colors.black,
                         ),
@@ -171,7 +192,9 @@ class _watch_episodesBodyState extends State<watch_episodesBody> {
                           text: 'Back',
                           size: 12.sp,
                           fontWeight: FontWeight.w500,
-                          color:SchedulerBinding.instance.window.platformBrightness == Brightness.dark
+                          color: SchedulerBinding
+                                      .instance.window.platformBrightness ==
+                                  Brightness.dark
                               ? Colors.white
                               : Colors.black,
                         ),
@@ -183,9 +206,8 @@ class _watch_episodesBodyState extends State<watch_episodesBody> {
                     height: 300.h,
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
-                      color: Colors.red
-                    ),
+                        borderRadius: BorderRadius.circular(30),
+                        color: Colors.red),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(15),
                       child: YoutubePlayer(
@@ -202,8 +224,7 @@ class _watch_episodesBodyState extends State<watch_episodesBody> {
                     children: [
                       Expanded(
                         child: InkWell(
-                          onTap: (){
-                          },
+                          onTap: () {},
                           child: episodeIconsWithTexts(
                             isView: true,
                             isLike: false,
@@ -215,11 +236,10 @@ class _watch_episodesBodyState extends State<watch_episodesBody> {
                       ),
                       Expanded(
                         child: InkWell(
-                          onTap: (){
-                          },
+                          onTap: () {},
                           child: episodeIconsWithTexts(
                             isView: false,
-                            isLike:true,
+                            isLike: true,
                             title: 'Like',
                             iconName: 'download',
                             subtitle: '10k',
@@ -230,7 +250,7 @@ class _watch_episodesBodyState extends State<watch_episodesBody> {
                         flex: 2,
                         child: episodeIconsWithTexts(
                           isLike: false,
-                          isView:false,
+                          isView: false,
                           title: 'Upload Date',
                           iconName: 'download',
                           subtitle: '11-Feb, 2022',
@@ -239,26 +259,28 @@ class _watch_episodesBodyState extends State<watch_episodesBody> {
                     ],
                   ),
                   Visibility(
-                    visible:detail,
-                    child: Column(children:[SizedBox(height: 33.h),
-                      ReadMoreText(
-                        '${widget.description}',
-                        trimLines: 6,
-                        colorClickableText:Theme.of(context).primaryColor,
-                        trimMode: TrimMode.Line,
-                        trimCollapsedText: 'Read more',
-                        trimExpandedText: 'Read less',
-                        style: TextStyle(
-                            color: Colors.grey,
-                            fontSize: 12.sp
-                        ),
-                        moreStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.bold,color: Theme.of(context).primaryColor),
-                      ),
-                      //
-                      SizedBox(height: 14.h),
+                      visible: detail,
+                      child: Column(
+                        children: [
+                          SizedBox(height: 33.h),
+                          ReadMoreText(
+                            '${widget.description}',
+                            trimLines: 6,
+                            colorClickableText: Theme.of(context).primaryColor,
+                            trimMode: TrimMode.Line,
+                            trimCollapsedText: 'Read more',
+                            trimExpandedText: 'Read less',
+                            style:
+                                TextStyle(color: Colors.grey, fontSize: 12.sp),
+                            moreStyle: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: Theme.of(context).primaryColor),
+                          ),
+                          //
+                          SizedBox(height: 14.h),
                         ],
-                      )
-                  )
+                      ))
                 ],
               ),
             ),
@@ -269,10 +291,7 @@ class _watch_episodesBodyState extends State<watch_episodesBody> {
                 child: TextButton(
                   onPressed: () {
                     Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (_) =>
-                              Home()));
+                        context, MaterialPageRoute(builder: (_) => Home()));
                   },
                   style: TextButton.styleFrom(
                     backgroundColor: Theme.of(context).primaryColor,

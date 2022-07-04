@@ -23,18 +23,15 @@ class addApp extends StatefulWidget {
 class _addAppState extends State<addApp> {
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(360, 800),
-      builder: () =>  Scaffold(
-        body: addAppBody(),
-      ),
+    return Scaffold(
+      body: addAppBody(),
     );
   }
 }
 
 class addAppBody extends StatelessWidget {
   addAppBody({Key? key}) : super(key: key);
-  TextEditingController email=new TextEditingController();
+  TextEditingController email = new TextEditingController();
   GlobalKey<FormState> formkey = new GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -48,50 +45,54 @@ class addAppBody extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
-                height: MediaQuery.of(context).size.height - 174.h,
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                    Image.asset(
-                      'assets/images/logo.png',
-                      width: 177.w,
-                      height: 29.h,
-                    ),
-                    SizedBox(height: 24.h),
-                    Card(
-                      elevation: 3,
-                      color: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15.r),
-                      ),
-                      child: Container(
-                        width: double.infinity,
-                        margin: EdgeInsets.symmetric(
-                            horizontal: 18.w, vertical: 28.h),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            _text(text: 'App Url'),
-                            _customTextField(
-                              controller: email,
-                              hintText: 'Enter app Url',
-                            ),
-                            SizedBox(height: 24.h),
-                            SizedBox(
-                              width: double.infinity,
-                              child: TextButton(
-                                style: TextButton.styleFrom(
-                                  padding: EdgeInsets.symmetric(vertical: 16.h),
-                                  backgroundColor: Theme.of(context).primaryColor,
-                                  elevation: 4,
-                                  shadowColor: Theme.of(context).primaryColor,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(25.r),
-                                  ),
+                  height: MediaQuery.of(context).size.height - 174.h,
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'assets/images/logo.png',
+                          width: 177.w,
+                          height: 29.h,
+                        ),
+                        SizedBox(height: 24.h),
+                        Card(
+                          elevation: 3,
+                          color: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15.r),
+                          ),
+                          child: Container(
+                            width: double.infinity,
+                            margin: EdgeInsets.symmetric(
+                                horizontal: 18.w, vertical: 28.h),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                _text(text: 'App Url'),
+                                _customTextField(
+                                  controller: email,
+                                  hintText: 'Enter app Url',
                                 ),
-                                onPressed: ()async{
-                                  ProgressPopup(context);
-                                  if(validateForm()){
+                                SizedBox(height: 24.h),
+                                SizedBox(
+                                  width: double.infinity,
+                                  child: TextButton(
+                                    style: TextButton.styleFrom(
+                                      padding:
+                                          EdgeInsets.symmetric(vertical: 16.h),
+                                      backgroundColor:
+                                          Theme.of(context).primaryColor,
+                                      elevation: 4,
+                                      shadowColor:
+                                          Theme.of(context).primaryColor,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(25.r),
+                                      ),
+                                    ),
+                                    onPressed: () async {
+                                      ProgressPopup(context);
+                                      if (validateForm()) {
                                         FirebaseFirestore.instance
                                             .collection('app-requests')
                                             .add({
@@ -100,27 +101,29 @@ class addAppBody extends StatelessWidget {
                                           'userId': FirebaseAuth
                                               .instance.currentUser!.uid,
                                         }).then((value) => {
-                                          Navigator.pop(context),
-                                          Navigator.pop(context),
-                                          Fluttertoast.showToast(msg: 'Your request submitted successfully')});
+                                                  Navigator.pop(context),
+                                                  Navigator.pop(context),
+                                                  Fluttertoast.showToast(
+                                                      msg:
+                                                          'Your request submitted successfully')
+                                                });
                                       }
                                     },
-                                child: Text(
-                                  'Submit',
-                                  style: TextStyle(
-                                    fontSize: 16.sp,
-                                    fontWeight: FontWeight.w500,
-                                    color: Colors.black,
+                                    child: Text(
+                                      'Submit',
+                                      style: TextStyle(
+                                        fontSize: 16.sp,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.black,
+                                      ),
+                                    ),
                                   ),
                                 ),
-                              ),
+                              ],
                             ),
-                          ],
+                          ),
                         ),
-                      ),
-                    ),
-              ])
-      )
+                      ]))
             ],
           ),
         ),
@@ -136,15 +139,13 @@ class addAppBody extends StatelessWidget {
     );
   }
 
-  TextFormField _customTextField({String? hintText, bool isObscure = false,var controller}) {
+  TextFormField _customTextField(
+      {String? hintText, bool isObscure = false, var controller}) {
     return TextFormField(
-      style: TextStyle(
-          color: Colors.black
-      ),
+      style: TextStyle(color: Colors.black),
       controller: controller,
       obscureText: isObscure,
       decoration: InputDecoration(
-
         isCollapsed: false,
         hintText: hintText ?? '',
         hintStyle: TextStyle(
@@ -152,7 +153,7 @@ class addAppBody extends StatelessWidget {
           color: Colors.black,
         ),
       ),
-      validator:  (String? value) {
+      validator: (String? value) {
         if (value!.isEmpty) {
           return "Please fill out this feild";
         }
@@ -170,8 +171,9 @@ class addAppBody extends StatelessWidget {
       ),
     );
   }
+
   bool validateForm() {
-    final form =formkey.currentState;
+    final form = formkey.currentState;
     if (form!.validate()) {
       return true;
     }

@@ -14,9 +14,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../model/popup_model.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
- CustomBottomNavigationBar(this.index);
+  CustomBottomNavigationBar(this.index);
   var index;
-  
+
   @override
   _CustomBottomNavigationBarState createState() =>
       _CustomBottomNavigationBarState();
@@ -25,46 +25,53 @@ class CustomBottomNavigationBar extends StatefulWidget {
 class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   _CustomBottomNavigationBarState();
 
-  void navigation() async{
+  void navigation() async {
     if (widget.index == 0) {
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => Home()));
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (_) => Home()));
     } else if (widget.index == 1) {
-      if(FirebaseAuth.instance.currentUser!.email == 'guest@gmail.com'){
-        var value = await popup(context, "Sign in to favourite, \ncurate and review apps.", "Sign in", "No thanks");
-        if(value){
+      if (FirebaseAuth.instance.currentUser!.email == 'guest@gmail.com') {
+        var value = await popup(
+            context,
+            "Sign in to favourite, \ncurate and review apps.",
+            "Sign in",
+            "No thanks");
+        if (value) {
           Navigator.pop(context);
           FirebaseAuth.instance.signOut();
-          Navigator.of(context).push(
-            MaterialPageRoute(
-                builder: (context) =>
-                    Login()));
-        } else 
-          Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (_) => const FavouritesPage()));
-      }
-      else
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => Login()));
+        } else
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (_) => const FavouritesPage()));
+      } else
         Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (_) => const FavouritesPage()));
     } else if (widget.index == 2) {
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (_) => SearchPage(filterValue: 'Filter By',)));
+          context,
+          MaterialPageRoute(
+              builder: (_) => SearchPage(
+                    filterValue: 'Filter By',
+                  )));
     } else {
-       if(FirebaseAuth.instance.currentUser!.email == 'guest@gmail.com'){
-        var value = await popup(context, "Sign in to favourite, \ncurate and review apps.", "Sign in", "No thanks");
-        if(value){
+      if (FirebaseAuth.instance.currentUser!.email == 'guest@gmail.com') {
+        var value = await popup(
+            context,
+            "Sign in to favourite, \ncurate and review apps.",
+            "Sign in",
+            "No thanks");
+        if (value) {
           Navigator.pop(context);
           FirebaseAuth.instance.signOut();
-          Navigator.of(context).push(
-            MaterialPageRoute(
-                builder: (context) =>
-                    Login()));
-        } else 
-          Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (_) => const UserProfilePage()));
-      }
-      else
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (_) => const UserProfilePage()));
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => Login()));
+        } else
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (_) => const UserProfilePage()));
+      } else
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (_) => const UserProfilePage()));
     }
   }
 
@@ -73,11 +80,11 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
     return Container(
       margin: EdgeInsets.all(10),
       decoration: BoxDecoration(
-        color: SchedulerBinding.instance.window.platformBrightness != Brightness.dark
-            ? Colors.white
-            : Colors.black12.withOpacity(0.5),
-        borderRadius: BorderRadius.circular(100)
-      ),
+          color: SchedulerBinding.instance.window.platformBrightness !=
+                  Brightness.dark
+              ? Colors.white
+              : Colors.black12.withOpacity(0.5),
+          borderRadius: BorderRadius.circular(100)),
       child: SalomonBottomBar(
         selectedItemColor: Theme.of(context).primaryColor,
         selectedColorOpacity: 1.0,
@@ -92,27 +99,27 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
           SalomonBottomBarItem(
             icon: Icon(
               Icons.home,
-              color: SchedulerBinding.instance.window.platformBrightness == Brightness.dark
+              color: SchedulerBinding.instance.window.platformBrightness ==
+                      Brightness.dark
                   ? Colors.white
                   : Colors.black,
             ),
             title: Text(
-            "Home",
-            style: GoogleFonts.roboto(
-              color:
-                  SchedulerBinding.instance.window.platformBrightness == Brightness.dark
+              "Home",
+              style: GoogleFonts.roboto(
+                  color: SchedulerBinding.instance.window.platformBrightness ==
+                          Brightness.dark
                       ? Colors.white
                       : Colors.black,
-              fontWeight: FontWeight.w500,
-              fontSize: 13
+                  fontWeight: FontWeight.w500,
+                  fontSize: 13),
+              // style: TextStyle(
+              //   color:
+              //       SchedulerBinding.instance.window.platformBrightness == Brightness.dark
+              //           ? Colors.white
+              //           : Colors.black,
+              // ),
             ),
-            // style: TextStyle(
-            //   color:
-            //       SchedulerBinding.instance.window.platformBrightness == Brightness.dark
-            //           ? Colors.white
-            //           : Colors.black,
-            // ),
-              ),
             selectedColor: Theme.of(context).primaryColor,
             unselectedColor: Colors.grey,
           ),
@@ -120,20 +127,20 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
           SalomonBottomBarItem(
             icon: Icon(
               Icons.favorite,
-              color: SchedulerBinding.instance.window.platformBrightness == Brightness.dark
+              color: SchedulerBinding.instance.window.platformBrightness ==
+                      Brightness.dark
                   ? Colors.white
                   : Colors.black,
             ),
             title: Text(
               "Favourites",
-               style: GoogleFonts.roboto(
-                color:
-                    SchedulerBinding.instance.window.platformBrightness == Brightness.dark
-                        ? Colors.white
-                        : Colors.black,
-                fontWeight: FontWeight.w500,
-                fontSize: 13
-              ),
+              style: GoogleFonts.roboto(
+                  color: SchedulerBinding.instance.window.platformBrightness ==
+                          Brightness.dark
+                      ? Colors.white
+                      : Colors.black,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 13),
             ),
             unselectedColor: Colors.grey,
             selectedColor: Theme.of(context).primaryColor,
@@ -142,20 +149,20 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
           SalomonBottomBarItem(
             icon: Icon(
               Icons.search,
-              color: SchedulerBinding.instance.window.platformBrightness == Brightness.dark
+              color: SchedulerBinding.instance.window.platformBrightness ==
+                      Brightness.dark
                   ? Colors.white
                   : Colors.black,
             ),
             title: Text(
               "Search",
-               style: GoogleFonts.roboto(
-                color:
-                    SchedulerBinding.instance.window.platformBrightness == Brightness.dark
-                        ? Colors.white
-                        : Colors.black,
-                fontWeight: FontWeight.w500,
-                fontSize: 13
-              ),
+              style: GoogleFonts.roboto(
+                  color: SchedulerBinding.instance.window.platformBrightness ==
+                          Brightness.dark
+                      ? Colors.white
+                      : Colors.black,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 13),
             ),
             unselectedColor: Colors.grey,
             selectedColor: Theme.of(context).primaryColor,
@@ -165,7 +172,8 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
           SalomonBottomBarItem(
             icon: Icon(
               Icons.person,
-              color: SchedulerBinding.instance.window.platformBrightness == Brightness.dark
+              color: SchedulerBinding.instance.window.platformBrightness ==
+                      Brightness.dark
                   ? Colors.white
                   : Colors.black,
             ),
@@ -173,13 +181,12 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
             title: Text(
               "Profile",
               style: GoogleFonts.roboto(
-                color:
-                    SchedulerBinding.instance.window.platformBrightness == Brightness.dark
-                        ? Colors.white
-                        : Colors.black,
-                fontWeight: FontWeight.w500,
-                fontSize: 13
-              ),
+                  color: SchedulerBinding.instance.window.platformBrightness ==
+                          Brightness.dark
+                      ? Colors.white
+                      : Colors.black,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 13),
             ),
             selectedColor: Theme.of(context).primaryColor,
           ),
