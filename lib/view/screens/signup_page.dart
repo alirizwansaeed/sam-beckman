@@ -14,6 +14,7 @@ import 'package:sam_beckman/view/widgets/ProgressPopUp.dart';
 import 'package:sam_beckman/view/widgets/toast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:email_auth/email_auth.dart';
+
 class Signup extends StatefulWidget {
   const Signup({Key? key}) : super(key: key);
 
@@ -24,12 +25,9 @@ class Signup extends StatefulWidget {
 class _SignupState extends State<Signup> {
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(360, 800),
-      builder: () => Scaffold(
-        resizeToAvoidBottomInset: true,
-        body: SignupBody(),
-      ),
+    return Scaffold(
+      resizeToAvoidBottomInset: true,
+      body: SignupBody(),
     );
   }
 }
@@ -42,10 +40,10 @@ class SignupBody extends StatefulWidget {
 }
 
 class _SignupBodyState extends State<SignupBody> {
-  var obscure=false;
-  var obscure1=false;
+  var obscure = false;
+  var obscure1 = false;
 
-  ScrollController _controller=new ScrollController();
+  ScrollController _controller = new ScrollController();
   firebaseAuthController auth = new firebaseAuthController();
   firebaseController firestoreController = new firebaseController();
   TextEditingController email = new TextEditingController();
@@ -79,15 +77,19 @@ class _SignupBodyState extends State<SignupBody> {
                   child: Column(
                     children: [
                       Image.asset(
-                        SchedulerBinding.instance.window.platformBrightness == Brightness.dark ?  
-                          'assets/images/logo_dark.png' :
-                          'assets/images/logo.png',),
+                        SchedulerBinding.instance.window.platformBrightness ==
+                                Brightness.dark
+                            ? 'assets/images/logo_dark.png'
+                            : 'assets/images/logo.png',
+                      ),
                       SizedBox(height: 24.h),
                       Card(
                         elevation: 3,
-                        color: SchedulerBinding.instance.window.platformBrightness == Brightness.dark ? 
-                          Color(0xff46454D) :
-                          Colors.white,
+                        color: SchedulerBinding
+                                    .instance.window.platformBrightness ==
+                                Brightness.dark
+                            ? Color(0xff46454D)
+                            : Colors.white,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15.r),
                         ),
@@ -143,12 +145,22 @@ class _SignupBodyState extends State<SignupBody> {
                               _text(text: 'Password'),
                               _customPasswordField(
                                 suffixicon: IconButton(
-                                  onPressed: (){
+                                  onPressed: () {
                                     setState(() {
-                                      obscure==true?obscure=false:obscure=true;
+                                      obscure == true
+                                          ? obscure = false
+                                          : obscure = true;
                                     });
                                   },
-                                  icon: obscure==false?Icon(Icons.remove_red_eye_outlined,color:Colors.grey,):Icon(Icons.remove_red_eye,color:Theme.of(context).primaryColor,),
+                                  icon: obscure == false
+                                      ? Icon(
+                                          Icons.remove_red_eye_outlined,
+                                          color: Colors.grey,
+                                        )
+                                      : Icon(
+                                          Icons.remove_red_eye,
+                                          color: Theme.of(context).primaryColor,
+                                        ),
                                 ),
                                 isObscure: !obscure,
                                 controller: password,
@@ -158,12 +170,22 @@ class _SignupBodyState extends State<SignupBody> {
                               _text(text: 'Confirm Password'),
                               _customPasswordField(
                                 suffixicon: IconButton(
-                                  onPressed: (){
+                                  onPressed: () {
                                     setState(() {
-                                      obscure1==true?obscure1=false:obscure1=true;
+                                      obscure1 == true
+                                          ? obscure1 = false
+                                          : obscure1 = true;
                                     });
                                   },
-                                  icon: obscure1==false?Icon(Icons.remove_red_eye_outlined,color:Colors.grey,):Icon(Icons.remove_red_eye,color:Theme.of(context).primaryColor,),
+                                  icon: obscure1 == false
+                                      ? Icon(
+                                          Icons.remove_red_eye_outlined,
+                                          color: Colors.grey,
+                                        )
+                                      : Icon(
+                                          Icons.remove_red_eye,
+                                          color: Theme.of(context).primaryColor,
+                                        ),
                                 ),
                                 isObscure: !obscure1,
                                 controller: confirmpassword,
@@ -196,13 +218,14 @@ class _SignupBodyState extends State<SignupBody> {
                                   onPressed: () async {
                                     var pref =
                                         await SharedPreferences.getInstance();
-                                    if(password.text!=confirmpassword.text){
+                                    if (password.text != confirmpassword.text) {
                                       toastempty(
                                           context,
                                           'Password doesn\'t match',
                                           Colors.red);
                                     }
-                                    if (validateForm() && confirmpassword.text == password.text) {
+                                    if (validateForm() &&
+                                        confirmpassword.text == password.text) {
                                       ProgressPopup(context);
                                       sendVerificationEmail(context);
                                     }
@@ -221,7 +244,9 @@ class _SignupBodyState extends State<SignupBody> {
                           ),
                         ),
                       ),
-                      SizedBox(height:300.h,)
+                      SizedBox(
+                        height: 300.h,
+                      )
                     ],
                   ),
                 ),
@@ -236,8 +261,7 @@ class _SignupBodyState extends State<SignupBody> {
                     InkWell(
                         onTap: () {
                           Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                  builder: (context) => Login ()));
+                              MaterialPageRoute(builder: (context) => Login()));
                         },
                         child: Text(
                           ' Login',
@@ -252,55 +276,50 @@ class _SignupBodyState extends State<SignupBody> {
         ),
       ),
     );
-
   }
 
   sendOtp(context) {
-      Navigator.pop(context);
-      showModalBottomSheet(context: context, builder:(context){
-        return Container(
-          height: 200,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Text('Verification Email Sent',style: TextStyle(color: Theme.of(context).primaryColor,fontWeight: FontWeight.bold,fontSize: 20),),
-          ],)
-        );
-      });
+    Navigator.pop(context);
+    showModalBottomSheet(
+        context: context,
+        builder: (context) {
+          return Container(
+              height: 200,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text(
+                    'Verification Email Sent',
+                    style: TextStyle(
+                        color: Theme.of(context).primaryColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20),
+                  ),
+                ],
+              ));
+        });
     // if (result) {
     // }
   }
 
-  sendVerificationEmail(context) async{
+  sendVerificationEmail(context) async {
     await auth
-        .signUpWithEmailAndPassword(
-        email.text.trim(), password.text.trim())
+        .signUpWithEmailAndPassword(email.text.trim(), password.text.trim())
         .then((value) => {
-        Navigator.pop(context),
-        if (value)
-          {
-            saveData(),
-            sendMail(),
-            sendOtp(context)
-            
-          }
-        else
-          {
-            Navigator.pop(context),
-            toastempty(
-                context,
-                'email already registered',
-                Colors.red),
-          }
-      });
+              Navigator.pop(context),
+              if (value)
+                {saveData(), sendMail(), sendOtp(context)}
+              else
+                {
+                  Navigator.pop(context),
+                  toastempty(context, 'email already registered', Colors.red),
+                }
+            });
+  }
 
-
-    }
-
-    sendMail() async{
-      await FirebaseAuth.instance.currentUser!.sendEmailVerification();
-    }
-
+  sendMail() async {
+    await FirebaseAuth.instance.currentUser!.sendEmailVerification();
+  }
 
   Image _icons({String? imagePath}) {
     return Image.asset(
@@ -316,20 +335,22 @@ class _SignupBodyState extends State<SignupBody> {
       var controller,
       var validator}) {
     return TextFormField(
-      style: TextStyle(color:  SchedulerBinding.instance.window.platformBrightness == Brightness.dark ? 
-                                    Colors.white: 
-                                    Colors.black),
+      style: TextStyle(
+          color: SchedulerBinding.instance.window.platformBrightness ==
+                  Brightness.dark
+              ? Colors.white
+              : Colors.black),
       controller: controller,
       obscureText: isObscure,
       decoration: InputDecoration(
         isCollapsed: false,
         hintText: hintText ?? '',
         hintStyle: TextStyle(
-          fontSize: 14.sp,
-          color: SchedulerBinding.instance.window.platformBrightness == Brightness.dark ? 
-            Colors.white: 
-            Colors.black
-        ),
+            fontSize: 14.sp,
+            color: SchedulerBinding.instance.window.platformBrightness ==
+                    Brightness.dark
+                ? Colors.white
+                : Colors.black),
       ),
       validator: validator ??
           (String? value) {
@@ -344,23 +365,29 @@ class _SignupBodyState extends State<SignupBody> {
   }
 
   TextFormField _customPasswordField(
-      {String? hintText, bool isObscure = false, var controller,var onchanged,var suffixicon}) {
+      {String? hintText,
+      bool isObscure = false,
+      var controller,
+      var onchanged,
+      var suffixicon}) {
     return TextFormField(
       controller: controller,
       obscureText: isObscure,
-      style: TextStyle(color:  SchedulerBinding.instance.window.platformBrightness == Brightness.dark ? 
-                                    Colors.white: 
-                                    Colors.black),
+      style: TextStyle(
+          color: SchedulerBinding.instance.window.platformBrightness ==
+                  Brightness.dark
+              ? Colors.white
+              : Colors.black),
       decoration: InputDecoration(
-        suffixIcon: suffixicon??SizedBox(),
+        suffixIcon: suffixicon ?? SizedBox(),
         isCollapsed: false,
         hintText: hintText ?? '',
         hintStyle: TextStyle(
-          fontSize: 14.sp,
-          color: SchedulerBinding.instance.window.platformBrightness == Brightness.dark ? 
-                                    Colors.white: 
-                                    Colors.black
-        ),
+            fontSize: 14.sp,
+            color: SchedulerBinding.instance.window.platformBrightness ==
+                    Brightness.dark
+                ? Colors.white
+                : Colors.black),
       ),
       validator: (String? value) {
         if (value!.isEmpty) {
@@ -370,8 +397,8 @@ class _SignupBodyState extends State<SignupBody> {
         }
         return null;
       },
-      onChanged: onchanged??(value){},
-      onTap: (){
+      onChanged: onchanged ?? (value) {},
+      onTap: () {
         _controller.animateTo(
           _controller.position.maxScrollExtent,
           duration: Duration(seconds: 1),
