@@ -35,6 +35,7 @@ class MyApp extends StatelessWidget {
           primaryColor: const Color.fromARGB(255, 254, 192, 1),
           fontFamily: 'Satoshi',
         ),
+        //
         home: splashScreen(),
       ),
     );
